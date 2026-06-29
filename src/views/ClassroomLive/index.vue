@@ -5,6 +5,7 @@ import { ArrowLeft } from '@element-plus/icons-vue'
 
 import { supervisionTableData, buildingList, getPatrolClassroomsByPrefix } from '@/data/mockData'
 import BottomArea from './BottomArea.vue'
+import HlsPlayer from '@/components/video/HlsPlayer.vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -17,6 +18,8 @@ const currentRecord = computed(() => {
   )
   return ongoing ?? supervisionTableData.find((r) => r.classroom === classroomId.value)
 })
+
+const videoUrl = 'https://cloud-test-1325485117.cos.ap-shanghai.myqcloud.com/test.mp4?q-sign-algorithm=sha1&q-ak=AKIDaQqW1KfwyoQw1vzcLRuO35cvEsgpu4ejWdr5pTZPxFXpuFX5-V6XZb5ILiSpesJp&q-sign-time=1782722566;1782726166&q-key-time=1782722566;1782726166&q-header-list=host&q-url-param-list=&q-signature=4567c9e5c19f4f7f751dfd8b049909975e386bbc&x-cos-security-token=pqwNqSaVwS68t7Qgdv5PPQWg5tPX9O3ab36fa8b751939c703e1d89f1df1948b8D82LGGBi9g9fVxCzOKGxFiq5etEF9rHQLD2FB0mcSfaxloWql52v1Gpgi54OajxWA-3Ww3Cfno4EtsO_UX1mWyBbceLbyUVqGuOZiXOTFpFjTxJLSc_730GLHtdc-5QOAH1UiUhdVyoYDGsWJbykP8osYQ4amwGhhtIFm7B13NjMeA_R8-nx0Tla3CTLEejOoM8c57-TUgS76I33VFA6GV3xMy8mbMRv5R8k47GQSIx0cWXOWF5x6tSFv5EQ4-RC_8pckqRRgVo92QwkSFiboA&'
 
 /* 顶部导航 */
 const handleBack = () => router.back()
@@ -109,7 +112,13 @@ const classroomsByFloor = computed(() => {
         <!-- 左列：媒体流 -->
         <el-col :span="12">
           <el-card shadow="never" class="media-card" body-class="media-card-body">
-            <img class="media-img" src="@/assets/patrol/classroom-live/example-01.png" alt="摄像头画面" />
+            <div class="video-container">
+              <HlsPlayer
+                :src="videoUrl"
+                :autoplay="true"
+                :muted="true"
+              />
+            </div>
           </el-card>
         </el-col>
 
@@ -331,20 +340,37 @@ const classroomsByFloor = computed(() => {
   border-radius: 10px;
   background: transparent;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .media-card :deep(.el-card__body),
 .screen-card :deep(.el-card__body) {
   padding: 0;
+  width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .media-img {
-  width: 790px;
-  height: 444px;
+  width: 100%;
+  max-width: 790px;
+  aspect-ratio: 790 / 444;
   object-fit: cover;
   display: block;
   border-radius: 10px;
+}
+
+.video-container {
+  width: 100%;
+  max-width: 790px;
+  aspect-ratio: 790 / 444;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #000;
 }
 
 .card-header-title {

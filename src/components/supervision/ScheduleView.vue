@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import { RefreshLeft } from '@element-plus/icons-vue'
-import ongoingIcon from '@/assets/supervision/status-ongoing-01.svg'
+import ongoingIcon from '@/assets/supervision/status-ongoing-01.gif'
 import finishedIcon from '@/assets/supervision/status-finished-01.svg'
 import {
   supervisionPeriodOptions,

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, onMounted } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { List, Calendar } from '@element-plus/icons-vue'
 import BasePage from '@/components/layout/BasePage.vue'
 import ScheduleView from '@/components/supervision/ScheduleView.vue'
@@ -7,12 +8,15 @@ import SupervisionList from '@/components/supervision/SupervisionList.vue'
 import {
   supervisionTableData,
   createInitialSupervisionFilter,
-  type SupervisionFilterState
+  type SupervisionFilterState,
+  type SupervisionRecord
 } from '@/data/mockData'
 
 type TabKey = 'ongoing' | 'today' | 'all'
 type ViewMode = 'list' | 'schedule'
 
+const route = useRoute()
+const router = useRouter()
 const activeTab = ref<TabKey>('ongoing')
 
 // 从 localStorage 恢复视图模式，默认 'list'
@@ -27,6 +31,24 @@ watch(viewMode, (val) => {
 
 // 跨视图持久化的筛选状态（v-model 传给当前激活的视图）
 const filterState = ref<SupervisionFilterState>(createInitialSupervisionFilter())
+
+// 监听路由 query 参数切换选项卡
+onMounted(() => {
+  const tab = route.query.tab as TabKey
+  if (tab && ['ongoing', 'today', 'all'].includes(tab)) {
+    activeTab.value = tab
+  }
+})
+
+watch(() => route.query.tab, (tab) => {
+  if (tab && ['ongoing', 'today', 'all'].includes(tab as string)) {
+    activeTab.value = tab as TabKey
+  }
+})
+
+const handleRowClick = (record: SupervisionRecord) => {
+  router.push({ name: 'classroom-live', params: { id: record.classroom } })
+}
 </script>
 
 <template>
@@ -58,6 +80,7 @@ const filterState = ref<SupervisionFilterState>(createInitialSupervisionFilter()
         v-model="filterState"
         v-model:active-tab="activeTab"
         :raw-records="supervisionTableData"
+        @row-click="handleRowClick"
       >
         <template #default="{ tabs, activeTab: curTab, handleTabChange }">
           <div class="tab-list">

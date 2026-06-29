@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import ongoingIcon from '@/assets/supervision/status-ongoing-01.svg'
+import HlsPlayer from '@/components/video/HlsPlayer.vue'
+import ongoingIcon from '@/assets/supervision/status-ongoing-01.gif'
 import { supervisionPeriodOptions } from '@/data/mockData'
 
 const props = defineProps<{
@@ -26,6 +27,8 @@ const formattedPeriod = computed(() => {
   const num = opt.value
   return `${start} - ${end}（${num}节）`
 })
+
+const videoUrl = 'http://11.1.36.168:6899/live/cameraid/1000000%2456/substream/1.m3u8'
 </script>
 
 <template>
@@ -66,7 +69,6 @@ const formattedPeriod = computed(() => {
       </div>
     </div>
 
-    <img v-if="status === 'ongoing'" src="@/assets/patrol/stat-01.png" class="corner-stat" />
     <button class="btn-primary" @click.stop="$emit('enter')">
       <img src="@/assets/patrol/icon-04.svg" class="btn-icon" />
       进入教室
@@ -80,8 +82,7 @@ const formattedPeriod = computed(() => {
   height: 276px;
   border-radius: 14px;
   background: var(--color-bg-white);
-  border: 1px solid rgba(64, 128, 255, 0.08);
-  box-shadow: 0 6px 16px rgba(190, 198, 223, 0.18), inset 0 1px 8px rgba(15, 101, 231, 0.06);
+  border: 1px solid transparent;
   padding: 16px 18px 14px;
   display: flex;
   flex-direction: column;
@@ -94,26 +95,19 @@ const formattedPeriod = computed(() => {
 }
 
 .patrol-classroom-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-card-hover), inset 0 1px 8px rgba(15, 101, 231, 0.08);
+  border: 1px solid var(--color-primary);
+  box-shadow: 0px 12px 24px 0px rgba(190, 198, 223, 0.3);
 }
 
 .patrol-classroom-card.active {
-  border-color: var(--color-primary-soft);
+  border: 2px solid var(--color-primary-soft);
   box-shadow: 0 8px 20px rgba(64, 128, 255, 0.18);
 }
 
 .patrol-classroom-card.is-ongoing {
-  background: #eaf0fb;
-}
-
-.corner-stat {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 151px;
-  height: 135px;
-  z-index: 0;
+  background-image: url('@/assets/patrol/card-01.png');
+  background-size: cover;
+  background-position: center;
 }
 
 .card-header {
@@ -134,13 +128,28 @@ const formattedPeriod = computed(() => {
   border: 1px solid #A8B9FF;
 }
 
+.video-preview {
+  width: 100%;
+  height: 120px;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .card-body {
   display: flex;
   flex-direction: column;
   gap: 20px;
   flex: 1;
   min-height: 0;
-  padding-top: 26px;
+  padding-top: 8px;
 }
 
 .info-row {

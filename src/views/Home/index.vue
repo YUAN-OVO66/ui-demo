@@ -78,6 +78,10 @@ const handleClassroomWheel = (event: WheelEvent) => {
     container.scrollTop += event.deltaY
   }
 }
+
+const handleScheduleClick = (tab: 'today' | 'ongoing') => {
+  router.push({ name: 'teachers', query: { tab } })
+}
 </script>
 
 <template>
@@ -114,12 +118,12 @@ const handleClassroomWheel = (event: WheelEvent) => {
       <section class="schedule-section panel">
         <h2 class="section-title">教学督导</h2>
         <div class="schedule-list">
-          <div class="schedule-item schedule-today">
+          <div class="schedule-item schedule-today" @click="handleScheduleClick('today')">
             <el-icon class="schedule-icon"><Calendar /></el-icon>
             <span>今日课表</span>
             <el-icon class="arrow-icon"><ArrowRight /></el-icon>
           </div>
-          <div class="schedule-item schedule-ongoing">
+          <div class="schedule-item schedule-ongoing" @click="handleScheduleClick('ongoing')">
             <el-icon class="schedule-icon"><Calendar /></el-icon>
             <span>上课中课表</span>
             <el-icon class="arrow-icon"><ArrowRight /></el-icon>
@@ -161,7 +165,7 @@ const handleClassroomWheel = (event: WheelEvent) => {
 
 .classroom-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 250px);
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 16px;
   overflow-y: auto;
   flex: 1;
