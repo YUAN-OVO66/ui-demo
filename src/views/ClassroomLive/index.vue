@@ -43,7 +43,7 @@ const classroomsByFloor = computed(() => {
 </script>
 
 <template>
-  <div class="classroom-live">
+  <div class="classroom-live scrollbar-hidden">
     <!-- header + 中部展示区 合并容器 -->
     <div class="top-section">
     <!-- 1. 顶部导航栏 -->
@@ -152,11 +152,13 @@ const classroomsByFloor = computed(() => {
 
 /* ========== 整体页面架构 ========== */
 .classroom-live {
-  min-height: 100vh;
+  height: 100vh;
   padding: 10px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .main-display {

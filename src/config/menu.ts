@@ -11,12 +11,12 @@ export interface MenuItem {
 }
 
 export const menuConfig: MenuItem[] = [
-  { id: 'home', icon: 'house', label: '首页' },
-  { id: 'teachers', icon: 'user', label: '教学督导' },
-  { id: 'patrol', icon: 'location', label: '教室巡课' },
+  { id: 'home', icon: 'icon-sidebar-01', label: '首页' },
+  { id: 'teachers', icon: 'icon-sidebar-02', label: '教学督导' },
+  { id: 'patrol', icon: 'icon-sidebar-03', label: '教室巡课' },
   {
     id: 'evaluation',
-    icon: 'document',
+    icon: 'icon-sidebar-04',
     label: '评价系统',
     children: [
       { id: 'building', label: '模板管理' },
@@ -27,8 +27,8 @@ export const menuConfig: MenuItem[] = [
       { id: 'class-eval', label: '评价记录' }
     ]
   },
-  { id: 'patrol-records', icon: 'document-copy', label: '巡课记录' },
-  { id: 'patrol-stats', icon: 'pie-chart', label: '巡视数据' },
-  { id: 'review-records', icon: 'folder', label: '留言记录' },
-  { id: 'teacher-eval', icon: 'star', label: '教学回看' }
+  { id: 'patrol-records', icon: 'icon-sidebar-05', label: '巡课记录' },
+  { id: 'patrol-stats', icon: 'icon-sidebar-06', label: '巡视数据' },
+  { id: 'review-records', icon: 'icon-sidebar-07', label: '留言记录' },
+  { id: 'teacher-eval', icon: 'icon-sidebar-08', label: '教学回看' }
 ]

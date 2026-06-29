@@ -1,21 +1,13 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
-import { House, User, Location, Document, DocumentCopy, PieChart, Folder, Star } from '@element-plus/icons-vue'
 import { menuConfig } from '@/config/menu'
 
 const router = useRouter()
 const route = useRoute()
 
-const iconMap: Record<string, any> = {
-  house: House,
-  user: User,
-  location: Location,
-  document: Document,
-  'document-copy': DocumentCopy,
-  'pie-chart': PieChart,
-  folder: Folder,
-  star: Star
+const getIconPath = (icon: string) => {
+  return new URL(`/src/assets/layout/${icon}.svg`, import.meta.url).href
 }
 
 const activeMenu = computed(() => {
@@ -30,7 +22,7 @@ const activeMenu = computed(() => {
       <template v-for="item in menuConfig" :key="item.id">
         <el-sub-menu v-if="item.children" :index="item.id" popper-class="submenu-popper">
           <template #title>
-            <el-icon><component :is="iconMap[item.icon]" /></el-icon>
+            <img :src="getIconPath(item.icon)" class="menu-icon" alt="" />
             <span>{{ item.label }}</span>
           </template>
           <el-menu-item
@@ -43,7 +35,7 @@ const activeMenu = computed(() => {
           </el-menu-item>
         </el-sub-menu>
         <el-menu-item v-else :index="item.id" @click="router.push(`/${item.id}`)">
-          <el-icon><component :is="iconMap[item.icon]" /></el-icon>
+          <img :src="getIconPath(item.icon)" class="menu-icon" alt="" />
           <span>{{ item.label }}</span>
         </el-menu-item>
       </template>
@@ -63,6 +55,7 @@ const activeMenu = computed(() => {
 .menu {
   border: none;
   background: transparent;
+  padding-top: 50px;
 }
 
 :deep(.el-sub-menu__title),
@@ -117,5 +110,19 @@ const activeMenu = computed(() => {
 
 :deep(.el-menu-item.is-active .el-icon) {
   color: #FFFFFF;
+}
+
+.menu-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  flex-shrink: 0;
+  transition: filter var(--transition-base);
+}
+
+:deep(.el-sub-menu__title:hover) .menu-icon,
+:deep(.el-menu-item:hover) .menu-icon,
+:deep(.el-menu-item.is-active) .menu-icon {
+  filter: brightness(0) invert(1);
 }
 </style>
