@@ -49,45 +49,11 @@ const handleClose = () => {
   </el-dialog>
 </template>
 
-<style scoped>
-.dialog-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.dialog-title {
-  font-size: 18px;
-  font-weight: 600;
-  color: #FFFFFF;
-}
-
-.close-btn {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 24px;
-  height: 24px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.close-icon {
-  width: 20px;
-  height: 20px;
-}
-
+<style scoped lang="scss">
 .form-card {
   height: 426px;
-  border-radius: 12px;
-  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-white);
   margin: 0 5px;
   padding: 24px;
   box-sizing: border-box;
@@ -112,10 +78,7 @@ const handleClose = () => {
 }
 
 .dialog-footer {
-  display: flex;
-  justify-content: center;
   margin-top: auto;
-  padding: 16px 0;
 }
 
 .btn-view {
@@ -123,17 +86,17 @@ const handleClose = () => {
   height: 36px;
   font-size: 14px;
   color: #FFFFFF;
-  background: var(--color-primary, #3D7EFF);
+  background: var(--color-primary);
   border: none;
-  border-radius: var(--radius-sm, 4px);
+  border-radius: var(--radius-sm);
 }
 </style>
 
-<style>
+<style lang="scss">
 .message-detail-dialog.el-dialog {
   width: 520px;
   height: 560px;
-  border-radius: 18px;
+  border-radius: var(--radius-full);
   background:
     url('@/assets/layout/bg-02.png') no-repeat top center / 100% auto,
     #E7F2FF;

@@ -13,7 +13,7 @@ const router = useRouter()
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .not-found {
   width: 100%;
   height: 100%;
@@ -40,7 +40,7 @@ const router = useRouter()
 }
 
 .back-btn {
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   padding: 0 24px;
   height: 40px;
 }

@@ -78,8 +78,8 @@ const handleEnterClassroom = (id: string) => {
 <template>
   <BasePage>
     <section class="patrol-layout">
-      <aside class="building-aside">
-        <h3 class="aside-title">教学楼</h3>
+      <aside class="building-aside panel panel-soft">
+        <h3 class="panel-title-sm">教学楼</h3>
         <div class="building-list">
           <BuildingCard
             v-for="item in buildingList"
@@ -91,9 +91,9 @@ const handleEnterClassroom = (id: string) => {
         </div>
       </aside>
 
-      <section class="classroom-main">
+      <section class="classroom-main panel">
         <header class="main-header">
-          <h2 class="main-title">{{ activeBuilding.name }}</h2>
+          <h2 class="panel-title">{{ activeBuilding.name }}</h2>
           <span class="current-time">
             当前时间：{{ formattedTime }}{{ currentClassPeriod ? ` (${currentClassPeriod})` : '' }}
           </span>
@@ -118,7 +118,7 @@ const handleEnterClassroom = (id: string) => {
   </BasePage>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .patrol-layout {
   width: 100%;
   height: 100%;
@@ -133,22 +133,7 @@ const handleEnterClassroom = (id: string) => {
   flex: none;
   min-height: 0;
   flex-shrink: 0;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.4);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  box-sizing: border-box;
   overflow: hidden;
-}
-
-.aside-title {
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 26px;
-  color: #191C1E;
-  margin: 0;
 }
 
 .building-list {
@@ -157,19 +142,11 @@ const handleEnterClassroom = (id: string) => {
   gap: 12px;
 }
 
-
 .classroom-main {
   flex: 1;
   min-width: 0;
   min-height: 0;
   flex-shrink: 0;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.6);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  box-sizing: border-box;
   overflow: hidden;
 }
 
@@ -179,17 +156,9 @@ const handleEnterClassroom = (id: string) => {
   gap: 12px;
 }
 
-.main-title {
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 32px;
-  color: #191C1E;
-  margin: 0;
-}
-
 .current-time {
   font-size: 13px;
-  color: #8C9099;
+  color: var(--color-text-soft);
 }
 
 .classroom-grid {
@@ -210,15 +179,11 @@ const handleEnterClassroom = (id: string) => {
 
 .classroom-grid::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.15);
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
 }
 
 .empty-state {
   flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #B7BBC2;
-  font-size: 14px;
+  height: 100%;
 }
 </style>

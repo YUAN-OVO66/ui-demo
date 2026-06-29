@@ -3,6 +3,10 @@ import patrolCountIcon from '@/assets/home/stat-01.png'
 import evalCountIcon from '@/assets/home/stat-02.png'
 import evalTeacherIcon from '@/assets/home/stat-03.png'
 
+// ==================== Mock 场景下的"今天" ====================
+// mock 数据围绕 2026-06-18 构造，所有"今日/上课中"筛选统一以此为基准日。
+export const MOCK_TODAY = '2026-06-18'
+
 // ==================== 课程时间配置 ====================
 export const supervisionPeriodOptions = [
   { value: '1', label: '第一节', time: '08:00-08:45' },

@@ -19,31 +19,31 @@ defineEmits<{
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .building-card {
   width: 150px;
   height: 44px;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   background: transparent;
   border: none;
   box-shadow: none;
   padding: 10px 16px;
   cursor: pointer;
   box-sizing: border-box;
-  transition: background 0.2s, opacity 0.2s;
+  transition: background var(--transition-base), opacity var(--transition-base);
   display: flex;
   align-items: center;
 }
 
 .building-card:hover {
   opacity: 0.5;
-  background: #FFFFFF;
-  border-radius: 8px;
+  background: var(--color-bg-white);
+  border-radius: var(--radius-md);
 }
 
 .building-card.active {
-  background: rgba(255, 255, 255, 0.6);
-  box-shadow: 0px 4px 14px 0px rgba(190, 198, 223, 0.2);
+  background: var(--color-bg-page);
+  box-shadow: var(--shadow-card);
   position: relative;
 }
 
@@ -56,27 +56,27 @@ defineEmits<{
   width: 2px;
   height: 24px;
   border-radius: 0px 100px 100px 0px;
-  background: #0047FF;
+  background: var(--color-primary);
 }
 
 .building-name {
-  font-family: 'PingFang SC', '苹方-简', '苹方', sans-serif;
+  font-family: var(--font-family);
   font-size: 14px;
   font-weight: normal;
   line-height: 24px;
   letter-spacing: normal;
-  color: #000000;
+  color: var(--color-text-strong);
   white-space: nowrap;
 }
 
 .building-card.active .building-name {
   font-weight: 600;
-  color: #0047FF;
+  color: var(--color-primary);
 }
 
 .update-time {
   font-size: 12px;
-  color: #8C9099;
+  color: var(--color-text-soft);
   line-height: 18px;
   display: none;
 }

@@ -19,14 +19,14 @@ defineProps<{
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .card {
-  background: rgba(255, 255, 255, 0.6);
+  background: var(--color-bg-page);
   backdrop-filter: blur(10px);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   padding: 16px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
 }
 
 .card:hover {
@@ -48,6 +48,6 @@ defineProps<{
 
 .card-icon {
   font-size: 24px;
-  color: #4080ff;
+  color: var(--color-primary-soft);
 }
 </style>

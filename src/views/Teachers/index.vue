@@ -52,7 +52,7 @@ const filterState = ref<SupervisionFilterState>(createInitialSupervisionFilter()
       </div>
     </template>
 
-    <section class="supervision-panel">
+    <section class="supervision-panel panel">
       <SupervisionList
         v-if="viewMode === 'list'"
         v-model="filterState"
@@ -83,17 +83,9 @@ const filterState = ref<SupervisionFilterState>(createInitialSupervisionFilter()
   </BasePage>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .supervision-panel {
-  width: 100%;
   height: 100%;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.6);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  box-sizing: border-box;
   min-height: 0;
 }
 
@@ -116,17 +108,17 @@ const filterState = ref<SupervisionFilterState>(createInitialSupervisionFilter()
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition: background var(--transition-base), color var(--transition-base);
   font-family: inherit;
 }
 
 .view-item:hover {
-  color: #4080ff;
+  color: var(--color-primary-soft);
 }
 
 .view-active {
-  color: #4080ff;
-  background: #ffffff;
+  color: var(--color-primary-soft);
+  background: var(--color-bg-white);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 }
 
@@ -144,16 +136,16 @@ const filterState = ref<SupervisionFilterState>(createInitialSupervisionFilter()
   border: none;
   border-bottom: 2px solid transparent;
   cursor: pointer;
-  transition: color 0.2s, border-color 0.2s;
+  transition: color var(--transition-base), border-color var(--transition-base);
   font-family: inherit;
 }
 
 .tab-item:hover {
-  color: #4080ff;
+  color: var(--color-primary-soft);
 }
 
 .tab-active {
-  color: #4080ff;
-  border-bottom-color: #4080ff;
+  color: var(--color-primary-soft);
+  border-bottom-color: var(--color-primary-soft);
 }
 </style>

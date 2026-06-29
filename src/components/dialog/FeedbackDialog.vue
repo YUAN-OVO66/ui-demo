@@ -5,6 +5,7 @@ import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
 import Image from '@tiptap/extension-image'
 import Highlight from '@tiptap/extension-highlight'
+import { ElMessage } from 'element-plus'
 import IconClose from '@/assets/layout/icon-05.svg'
 
 const props = defineProps<{
@@ -56,8 +57,21 @@ const toolbarItems = [
   { key: 'codeBlock', icon: '⟨⟩', title: '代码块', action: () => editor.value?.chain().focus().toggleCodeBlock().run(), active: () => editor.value?.isActive('codeBlock') },
   { key: 'divider3' },
   { key: 'image', icon: '🖼', title: '插入图片', action: () => {
-    const url = window.prompt('请输入图片地址')
-    if (url) editor.value?.chain().focus().setImage({ src: url }).run()
+    const input = window.prompt('请输入图片地址（仅支持 http:// 或 https://）')
+    if (!input) return
+    const url = input.trim()
+    let parsed: URL
+    try {
+      parsed = new URL(url)
+    } catch {
+      ElMessage.warning('请输入合法的图片地址')
+      return
+    }
+    if (parsed.protocol !== 'http:' && parsed.protocol !== 'https:') {
+      ElMessage.warning('仅支持 http:// 或 https:// 协议的图片')
+      return
+    }
+    editor.value?.chain().focus().setImage({ src: parsed.href }).run()
   }},
 ]
 
@@ -141,13 +155,13 @@ const handleSubmit = () => {
   </el-dialog>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .form-card {
   width: 480px;
   flex: 1;
   min-height: 0;
-  border-radius: 12px;
-  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-white);
   display: flex;
   flex-direction: column;
   padding: 24px;
@@ -171,7 +185,7 @@ const handleSubmit = () => {
 .form-label {
   font-size: 14px;
   font-weight: 500;
-  color: #191C1E;
+  color: var(--color-text);
 }
 
 .type-select {
@@ -181,14 +195,14 @@ const handleSubmit = () => {
 :deep(.type-select .el-input__wrapper) {
   height: 36px;
   border-radius: 6px;
-  background: #FFFFFF;
-  border: 1px solid #E7E7E9;
+  background: var(--color-bg-white);
+  border: 1px solid var(--color-border-light);
   box-shadow: none;
 }
 
 :deep(.type-select .el-input__wrapper:hover),
 :deep(.type-select .el-input__wrapper.is-focus) {
-  border-color: #E7E7E9;
+  border-color: var(--color-border-light);
   box-shadow: none;
 }
 
@@ -202,8 +216,8 @@ const handleSubmit = () => {
   flex: 1;
   min-height: 0;
   border-radius: 6px;
-  background: #FFFFFF;
-  border: 1px solid #E7E7E9;
+  background: var(--color-bg-white);
+  border: 1px solid var(--color-border-light);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -215,7 +229,7 @@ const handleSubmit = () => {
   align-items: center;
   gap: 2px;
   padding: 4px 8px;
-  border-bottom: 1px solid #E7E7E9;
+  border-bottom: 1px solid var(--color-border-light);
   flex-shrink: 0;
 }
 
@@ -232,7 +246,7 @@ const handleSubmit = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.15s;
+  transition: all var(--transition-fast);
   padding: 0;
 }
 
@@ -243,7 +257,7 @@ const handleSubmit = () => {
 
 .toolbar-btn.active {
   background: #E8F0FE;
-  color: #4080FF;
+  color: var(--color-primary-soft);
 }
 
 .toolbar-divider {
@@ -281,7 +295,7 @@ const handleSubmit = () => {
 }
 
 :deep(.tiptap-editor-inner blockquote) {
-  border-left: 3px solid #4080FF;
+  border-left: 3px solid var(--color-primary-soft);
   margin: 0 0 8px;
   padding-left: 12px;
   color: #666;
@@ -312,51 +326,11 @@ const handleSubmit = () => {
 }
 
 .dialog-footer {
-  display: flex;
-  justify-content: center;
-}
-
-.dialog-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.close-btn {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 24px;
-  height: 24px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
   padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
-
-.close-icon {
-  width: 20px;
-  height: 20px;
-}
-
-.dialog-title {
-  font-family: '苹方', 'PingFang SC', sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: normal;
-  text-align: center;
-  letter-spacing: normal;
-  color: #FFFFFF;
-}
-
 </style>
 
-<style>
+<style lang="scss">
 /* 非 scoped — 穿透 append-to-body 的 el-dialog */
 .feedback-dialog.el-dialog {
   width: 520px;
@@ -364,7 +338,7 @@ const handleSubmit = () => {
   background:
     url('@/assets/layout/bg-02.png') no-repeat top center / 100% auto,
     #EEEEEF;
-  border-radius: 18px;
+  border-radius: var(--radius-full);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -386,9 +360,5 @@ const handleSubmit = () => {
 
 .feedback-dialog .el-dialog__footer {
   padding: 0;
-}
-
-.dialog-overlay {
-  background: rgba(0, 0, 0, 0.6);
 }
 </style>

@@ -6,7 +6,7 @@ import ClassroomCard from '@/components/card/ClassroomCard.vue'
 import StatCard from '@/components/card/StatCard.vue'
 import PatrolCard from '@/components/card/PatrolCard.vue'
 import BasePage from '@/components/layout/BasePage.vue'
-import { getPatrolClassroomsByPrefix, buildingList, supervisionTableData, statsData } from '@/data/mockData'
+import { getPatrolClassroomsByPrefix, buildingList, supervisionTableData, statsData, MOCK_TODAY } from '@/data/mockData'
 
 const router = useRouter()
 
@@ -20,14 +20,11 @@ const classroomList = computed(() => {
 
 // 最近巡课数据 - 从 supervisionTableData 中获取最近正在上课和已完成的课程
 const nearestPatrolData = computed(() => {
-  // 获取今天日期
-  const today = new Date('2026-06-18').toISOString().split('T')[0]
-
   // 筛选最近的课程记录（优先今天上课中，然后是今天待上课，最后是昨天已完成）
   const recentRecords = supervisionTableData
     .filter(record => {
       const recordDate = new Date(record.date)
-      const todayDate = new Date(today)
+      const todayDate = new Date(MOCK_TODAY)
       const daysDiff = Math.floor((todayDate.getTime() - recordDate.getTime()) / (1000 * 60 * 60 * 24))
       // 只显示今天和昨天的记录
       return daysDiff >= 0 && daysDiff <= 1
@@ -85,9 +82,9 @@ const handleClassroomWheel = (event: WheelEvent) => {
 
 <template>
   <BasePage>
-    <section class="classroom-section">
+    <section class="classroom-section panel">
       <h2 class="section-title">教室巡课</h2>
-      <div class="classroom-grid" @wheel="handleClassroomWheel">
+      <div class="classroom-grid scrollbar-thin" @wheel="handleClassroomWheel">
         <ClassroomCard
           v-for="item in classroomList"
           :key="item.id"
@@ -99,9 +96,9 @@ const handleClassroomWheel = (event: WheelEvent) => {
     </section>
 
     <div class="two-columns">
-      <section class="patrol-section">
+      <section class="patrol-section panel">
         <h2 class="section-title">最近巡课</h2>
-        <div class="patrol-grid" @wheel="handlePatrolWheel">
+        <div class="patrol-grid scrollbar-hidden" @wheel="handlePatrolWheel">
           <PatrolCard
             v-for="item in nearestPatrolData"
             :key="item.id"
@@ -114,7 +111,7 @@ const handleClassroomWheel = (event: WheelEvent) => {
         </div>
       </section>
 
-      <section class="schedule-section">
+      <section class="schedule-section panel">
         <h2 class="section-title">教学督导</h2>
         <div class="schedule-list">
           <div class="schedule-item schedule-today">
@@ -131,7 +128,7 @@ const handleClassroomWheel = (event: WheelEvent) => {
       </section>
     </div>
 
-    <section class="stats-section">
+    <section class="stats-section panel">
       <div class="stats-grid">
         <StatCard
           v-for="item in statsData"
@@ -146,26 +143,19 @@ const handleClassroomWheel = (event: WheelEvent) => {
   </BasePage>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .section-title {
   width: 96px;
   height: 32px;
   font-size: 24px;
   font-weight: 600;
   line-height: 32px;
-  color: #191C1E;
-  margin: 0 0 16px 0;
+  color: var(--color-text);
+  margin: 0;
 }
 
 .classroom-section {
-  width: 100%;
   height: 420px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.6);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
   overflow: hidden;
 }
 
@@ -179,24 +169,6 @@ const handleClassroomWheel = (event: WheelEvent) => {
   padding-right: 8px;
 }
 
-.classroom-grid::-webkit-scrollbar {
-  width: 6px;
-}
-
-.classroom-grid::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.05);
-  border-radius: 3px;
-}
-
-.classroom-grid::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 3px;
-}
-
-.classroom-grid::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.3);
-}
-
 .two-columns {
   display: flex;
   gap: 20px;
@@ -205,9 +177,6 @@ const handleClassroomWheel = (event: WheelEvent) => {
 .patrol-section {
   flex: 1;
   min-width: 0;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.6);
-  padding: 20px;
   overflow: hidden;
 }
 
@@ -216,19 +185,11 @@ const handleClassroomWheel = (event: WheelEvent) => {
   gap: 16px;
   overflow-x: auto;
   overflow-y: hidden;
-  scrollbar-width: none;
-}
-
-.patrol-grid::-webkit-scrollbar {
-  display: none;
 }
 
 .schedule-section {
   width: 370px;
   flex-shrink: 0;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.6);
-  padding: 20px;
 }
 
 .schedule-list {
@@ -242,10 +203,10 @@ const handleClassroomWheel = (event: WheelEvent) => {
   align-items: center;
   gap: 12px;
   padding: 16px;
-  background: rgba(255, 255, 255, 0.6);
-  border-radius: 12px;
+  background: var(--color-bg-page);
+  border-radius: var(--radius-lg);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all var(--transition-base);
   background-size: cover;
   background-position: center;
 }
@@ -264,20 +225,13 @@ const handleClassroomWheel = (event: WheelEvent) => {
 }
 
 .schedule-icon {
-  color: #4080ff;
+  color: var(--color-primary-soft);
   font-size: 20px;
 }
 
 .arrow-icon {
   margin-left: auto;
   color: #999;
-}
-
-.stats-section {
-  width: 100%;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.6);
-  padding: 20px;
 }
 
 .stats-grid {

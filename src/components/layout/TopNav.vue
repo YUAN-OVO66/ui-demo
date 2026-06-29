@@ -70,7 +70,7 @@ const showMessagePopover = ref(false)
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .top-nav {
   flex: 1;
   display: flex;
@@ -87,9 +87,9 @@ const showMessagePopover = ref(false)
 .nav-btn {
   width: 44px;
   height: 44px;
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(105, 123, 169, 0.1);
-  box-shadow: 0px 4px 14px 0px rgba(190, 198, 223, 0.2);
+  background: var(--color-bg-page-strong);
+  border: 1px solid var(--color-border-soft);
+  box-shadow: var(--shadow-card);
 }
 
 .nav-icon {
@@ -140,7 +140,7 @@ const showMessagePopover = ref(false)
 }
 
 .avatar {
-  border: 1px solid rgba(105, 123, 169, 0.1);
+  border: 1px solid var(--color-border-soft);
 }
 
 .role-switch {
@@ -150,16 +150,16 @@ const showMessagePopover = ref(false)
   gap: 8px;
   width: 110px;
   height: 44px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(105, 123, 169, 0.1);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-page-strong);
+  border: 1px solid var(--color-border-soft);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all var(--transition-base);
 }
 
 .role-switch:hover {
   background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0px 4px 14px 0px rgba(190, 198, 223, 0.2);
+  box-shadow: var(--shadow-card);
 }
 
 .role-text {
@@ -176,13 +176,13 @@ const showMessagePopover = ref(false)
 }
 
 .logout-btn:hover {
-  color: #f56c6c;
+  color: var(--color-danger);
   background: transparent !important;
   border: none !important;
 }
 </style>
 
-<style>
+<style lang="scss">
 .el-popover.el-popper.message-popover-popper {
   padding: 0;
   background: transparent;

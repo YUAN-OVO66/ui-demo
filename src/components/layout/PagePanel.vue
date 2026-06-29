@@ -5,7 +5,7 @@ defineProps<{
 </script>
 
 <template>
-  <section class="page-panel">
+  <section class="page-panel panel">
     <h2 class="panel-title">{{ title }}</h2>
     <div class="panel-body">
       <slot>
@@ -15,26 +15,7 @@ defineProps<{
   </section>
 </template>
 
-<style scoped>
-.page-panel {
-  width: 100%;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.6);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  box-sizing: border-box;
-}
-
-.panel-title {
-  font-size: 24px;
-  font-weight: 600;
-  line-height: 32px;
-  color: #191C1E;
-  margin: 0;
-}
-
+<style scoped lang="scss">
 .panel-body {
   flex: 1;
   min-height: 0;
@@ -47,7 +28,7 @@ defineProps<{
   height: 240px;
   color: #999;
   font-size: 16px;
-  background: rgba(255, 255, 255, 0.4);
-  border-radius: 12px;
+  background: var(--color-bg-page-soft);
+  border-radius: var(--radius-lg);
 }
 </style>

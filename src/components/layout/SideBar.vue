@@ -51,7 +51,7 @@ const activeMenu = computed(() => {
   </el-aside>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .sidebar {
   height: 100%;
   background: transparent;
@@ -70,7 +70,7 @@ const activeMenu = computed(() => {
   width: 100%;
   max-width: 180px;
   height: 44px;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   background-color: transparent;
   margin-bottom: 8px;
   font-size: 14px;
@@ -98,7 +98,7 @@ const activeMenu = computed(() => {
 :deep(.el-sub-menu__title:hover),
 :deep(.el-menu-item:hover) {
   opacity: 0.9;
-  background-color: #1947FF;
+  background-color: var(--color-primary);
   box-shadow: 0px 6px 16px 0px rgba(0, 71, 255, 0.3);
   color: #FFFFFF;
 }
@@ -109,8 +109,8 @@ const activeMenu = computed(() => {
 }
 
 :deep(.el-menu-item.is-active) {
-  border-radius: 8px;
-  background-color: #0F3DF4;
+  border-radius: var(--radius-md);
+  background-color: var(--color-primary-active);
   box-shadow: 0px 6px 16px 0px rgba(0, 71, 255, 0.3);
   color: #FFFFFF;
 }

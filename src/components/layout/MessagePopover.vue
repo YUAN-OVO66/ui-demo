@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import IconUnread from '@/assets/layout/icon-06.svg'
 import IconRead from '@/assets/layout/icon-07.svg'
 import { notificationList } from '@/data/mockData'
 import MessageDetailDialog from '@/components/dialog/MessageDetailDialog.vue'
 
-const props = defineProps<{ hasUnread?: boolean }>()
+defineProps<{ hasUnread?: boolean }>()
 const emit = defineEmits<{
   readAll: [tab: string]
   'update:hasUnread': [value: boolean]
@@ -19,10 +19,48 @@ const tabs = [
   { key: 'done', label: '已办' },
 ]
 
-const messageList = ref(notificationList.map(item => ({ ...item })))
+const READ_STORAGE_KEY = 'message-popover-read-titles'
+
+function loadReadTitles(): Set<string> {
+  try {
+    const raw = localStorage.getItem(READ_STORAGE_KEY)
+    if (!raw) return new Set()
+    const parsed = JSON.parse(raw)
+    return Array.isArray(parsed) ? new Set(parsed.filter((t): t is string => typeof t === 'string')) : new Set()
+  } catch {
+    return new Set()
+  }
+}
+
+function persistReadTitles(titles: Set<string>) {
+  try {
+    localStorage.setItem(READ_STORAGE_KEY, JSON.stringify([...titles]))
+  } catch {
+    /* 存储失败时静默降级，会话内仍然生效 */
+  }
+}
+
+const readTitles = loadReadTitles()
+const messageList = ref(
+  notificationList.map(item => ({ ...item, isRead: item.isRead || readTitles.has(item.title) }))
+)
 const showDetail = ref(false)
 const selectedTitle = ref('')
 const selectedContent = ref('')
+
+// 恢复后若已无未读，同步给父组件
+if (!messageList.value.some(item => !item.isRead)) {
+  emit('update:hasUnread', false)
+}
+
+watch(
+  messageList,
+  (list) => {
+    const next = new Set(list.filter(item => item.isRead).map(item => item.title))
+    persistReadTitles(next)
+  },
+  { deep: true }
+)
 
 const currentList = computed(() => {
   switch (activeTab.value) {
@@ -98,22 +136,22 @@ function handleItemClick(item: { title: string; isRead: boolean; content: string
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .message-popover {
   width: 400px;
   height: 392px;
   display: flex;
   flex-direction: column;
-  border-radius: 18px;
-  background: #FFFFFF;
-  box-shadow: 0px 10px 30px 0px rgba(190, 198, 223, 0.4);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-white);
+  box-shadow: var(--shadow-popover);
 }
 
 .popover-tabs {
   display: flex;
   padding: 16px 20px 0;
   gap: 24px;
-  border-bottom: 1px solid var(--color-border, rgba(105, 123, 169, 0.15));
+  border-bottom: 1px solid var(--color-border);
 }
 
 .tab-item {
@@ -123,7 +161,7 @@ function handleItemClick(item: { title: string; isRead: boolean; content: string
   cursor: pointer;
   position: relative;
   color: #86909C;
-  transition: color 0.2s;
+  transition: color var(--transition-base);
 }
 
 .tab-item:hover {
@@ -131,7 +169,7 @@ function handleItemClick(item: { title: string; isRead: boolean; content: string
 }
 
 .tab-item.active {
-  color: var(--color-primary, #3D7EFF);
+  color: var(--color-primary);
 }
 
 .tab-item.active::after {
@@ -141,7 +179,7 @@ function handleItemClick(item: { title: string; isRead: boolean; content: string
   left: 0;
   right: 0;
   height: 2px;
-  background: var(--color-primary, #3D7EFF);
+  background: var(--color-primary);
   border-radius: 1px;
 }
 
@@ -165,7 +203,7 @@ function handleItemClick(item: { title: string; isRead: boolean; content: string
 }
 
 .content-item:hover .item-title {
-  color: var(--color-primary, #3D7EFF);
+  color: var(--color-primary);
 }
 
 .item-icon {
@@ -193,7 +231,7 @@ function handleItemClick(item: { title: string; isRead: boolean; content: string
   width: 10px;
   height: 10px;
   background: #E30000;
-  border: 2px solid #FFFFFF;
+  border: 2px solid var(--color-bg-white);
   border-radius: 50%;
 }
 
@@ -207,8 +245,8 @@ function handleItemClick(item: { title: string; isRead: boolean; content: string
 
 .item-title {
   font-size: 14px;
-  color: #000000;
-  transition: color 0.2s;
+  color: var(--color-text-strong);
+  transition: color var(--transition-base);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -216,18 +254,13 @@ function handleItemClick(item: { title: string; isRead: boolean; content: string
 }
 
 .empty-state {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 100%;
-  color: #C9CDD4;
-  font-size: 14px;
 }
 
 .popover-bottom {
   flex-shrink: 0;
   padding: 0 20px 12px;
-  border-top: 1px solid var(--color-border, rgba(105, 123, 169, 0.15));
+  border-top: 1px solid var(--color-border);
 }
 
 .read-all {
@@ -236,12 +269,12 @@ function handleItemClick(item: { title: string; isRead: boolean; content: string
   gap: 4px;
   height: 30px;
   cursor: pointer;
-  font-family: 'PingFang SC', '苹方', sans-serif;
+  font-family: var(--font-family);
   font-size: 12px;
   font-weight: normal;
   color: #8C8C8C;
-  border-radius: var(--radius-sm, 4px);
-  transition: color 0.2s;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-base);
 }
 
 .read-all:hover {

@@ -351,7 +351,7 @@ const getCourseColor = (record: SupervisionRecord): string =>
 export default { name: 'ScheduleView' }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .schedule-view {
   flex: 1;
   min-height: 0;
@@ -382,14 +382,14 @@ export default { name: 'ScheduleView' }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
 }
 
 .schedule-title {
   margin: 0;
   font-size: 24px;
   font-weight: 600;
-  color: #191c1e;
+  color: var(--color-text);
   text-align: center;
   flex: 1;
 }
@@ -401,10 +401,10 @@ export default { name: 'ScheduleView' }
   padding: 8px 16px;
   background: transparent;
   border: none;
-  color: #606266;
+  color: var(--color-text-secondary);
   font-size: 14px;
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all var(--transition-slow);
   font-weight: 500;
   border-radius: 6px;
 }
@@ -423,7 +423,7 @@ export default { name: 'ScheduleView' }
 .schedule-container {
   flex: 1;
   min-height: 0;
-  border-radius: 16px;
+  border-radius: var(--radius-xl);
   overflow: hidden;
 }
 
@@ -440,7 +440,7 @@ export default { name: 'ScheduleView' }
   grid-template-rows: minmax(48px, auto);
   gap: 10px;
   background: transparent;
-  border-radius: 8px 8px 0 0;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
   margin-bottom: 10px;
 }
 
@@ -451,10 +451,10 @@ export default { name: 'ScheduleView' }
   justify-content: center;
   align-items: center;
   padding: 5px 12px;
-  border-radius: 8px;
-  background: #ecf3fb;
+  border-radius: var(--radius-md);
+  background: var(--color-primary-bg-soft);
   font-weight: 600;
-  color: #191c1e;
+  color: var(--color-text);
   font-size: 14px;
   box-sizing: border-box;
   overflow: hidden;
@@ -466,12 +466,12 @@ export default { name: 'ScheduleView' }
   justify-content: center;
   align-items: center;
   padding: 5px 10px;
-  border-radius: 8px;
-  background: #ecf3fb;
+  border-radius: var(--radius-md);
+  background: var(--color-primary-bg-soft);
   box-sizing: border-box;
   font-size: 14px;
   font-weight: 600;
-  color: #191c1e;
+  color: var(--color-text);
   overflow: hidden;
 }
 
@@ -486,7 +486,7 @@ export default { name: 'ScheduleView' }
 .day-weekday {
   font-size: 14px;
   font-weight: 600;
-  color: #191c1e;
+  color: var(--color-text);
 }
 
 .day-date {
@@ -513,15 +513,15 @@ export default { name: 'ScheduleView' }
   justify-content: center;
   align-items: center;
   padding: 12px 8px;
-  border-radius: 8px;
-  background: #ecf3fb;
+  border-radius: var(--radius-md);
+  background: var(--color-primary-bg-soft);
   box-sizing: border-box;
   overflow: hidden;
 }
 
 .period-time {
   font-size: 13px;
-  color: #606266;
+  color: var(--color-text-secondary);
   white-space: nowrap;
   font-weight: 500;
 }
@@ -532,7 +532,7 @@ export default { name: 'ScheduleView' }
   display: flex;
   flex-direction: column;
   gap: 0;
-  transition: background 0.2s;
+  transition: background var(--transition-base);
 }
 
 .course-cell:hover {
@@ -545,9 +545,9 @@ export default { name: 'ScheduleView' }
   flex: 1;
   min-height: 0;
   padding: 10px 12px;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   cursor: pointer;
-  transition: all 0.3s;
+  transition: all var(--transition-slow);
   border: 1px solid transparent;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
   display: flex;
@@ -560,7 +560,7 @@ export default { name: 'ScheduleView' }
 .course-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-  border: 1px solid #1947FF;
+  border: 1px solid var(--color-primary);
 }
 
 /* 课程类型颜色 */
@@ -614,7 +614,7 @@ export default { name: 'ScheduleView' }
   font-weight: normal;
   line-height: 18px;
   letter-spacing: normal;
-  color: #1947FF;
+  color: var(--color-primary);
   padding: 0 4px;
   box-sizing: border-box;
 }
@@ -627,12 +627,12 @@ export default { name: 'ScheduleView' }
 .status-ongoing-tag,
 .status-finished-tag {
   background: rgba(255, 255, 255, 0.8);
-  color: #1947FF;
+  color: var(--color-primary);
 }
 
 .status-pending-tag {
   background: rgba(255, 255, 255, 0.8);
-  color: #909399;
+  color: var(--color-text-muted);
 }
 
 /* 课程信息 */
@@ -649,18 +649,18 @@ export default { name: 'ScheduleView' }
 .course-color-pink   .course-name { color: #c2185b; }
 .course-color-blue   .course-name { color: #1565c0; }
 .course-color-cyan   .course-name { color: #00838f; }
-.course-color-default .course-name { color: #191c1e; }
+.course-color-default .course-name { color: var(--color-text); }
 
 .course-class {
   font-size: 12px;
-  color: #606266;
+  color: var(--color-text-secondary);
   line-height: 1.3;
   margin-bottom: 2px;
 }
 
 .course-teacher {
   font-size: 12px;
-  color: #909399;
+  color: var(--color-text-muted);
   line-height: 1.3;
 }
 

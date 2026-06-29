@@ -20,11 +20,11 @@ defineEmits<{
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .classroom-card {
   width: 250px;
   height: 80px;
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   background: #deeafb;
   box-sizing: border-box;
   box-shadow: 0px 10px 20px 0px rgba(190, 198, 223, 0.2), inset 0px 1px 10px 0px rgba(15, 101, 231, 0.1154);
@@ -33,18 +33,18 @@ defineEmits<{
   justify-content: center;
   padding: 12px 16px;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
   position: relative;
   overflow: hidden;
 }
 
 .classroom-card:hover {
-  border: 1px solid #1947FF;
+  border: 1px solid var(--color-primary);
   box-shadow: 0px 12px 24px 0px rgba(190, 198, 223, 0.3), inset 0px 1px 10px 0px rgba(15, 101, 231, 0.1154);
 }
 
 .classroom-card.active {
-  border: 2px solid #4080FF;
+  border: 2px solid var(--color-primary-soft);
   box-shadow: 0 4px 12px rgba(64, 128, 255, 0.2);
 }
 
@@ -76,11 +76,11 @@ defineEmits<{
   font-weight: 500;
   line-height: 24px;
   letter-spacing: normal;
-  color: #191C1E;
+  color: var(--color-text);
   text-align: left;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
   max-width: 100%;
 }
 </style>

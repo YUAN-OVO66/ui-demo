@@ -74,12 +74,12 @@ const formattedPeriod = computed(() => {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .patrol-classroom-card {
   width: 340px;
   height: 276px;
   border-radius: 14px;
-  background: #FFFFFF;
+  background: var(--color-bg-white);
   border: 1px solid rgba(64, 128, 255, 0.08);
   box-shadow: 0 6px 16px rgba(190, 198, 223, 0.18), inset 0 1px 8px rgba(15, 101, 231, 0.06);
   padding: 16px 18px 14px;
@@ -88,18 +88,18 @@ const formattedPeriod = computed(() => {
   gap: 12px;
   cursor: pointer;
   box-sizing: border-box;
-  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
   position: relative;
   overflow: hidden;
 }
 
 .patrol-classroom-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 22px rgba(190, 198, 223, 0.28), inset 0 1px 8px rgba(15, 101, 231, 0.08);
+  box-shadow: var(--shadow-card-hover), inset 0 1px 8px rgba(15, 101, 231, 0.08);
 }
 
 .patrol-classroom-card.active {
-  border-color: #4080FF;
+  border-color: var(--color-primary-soft);
   box-shadow: 0 8px 20px rgba(64, 128, 255, 0.18);
 }
 
@@ -126,37 +126,12 @@ const formattedPeriod = computed(() => {
 .classroom-name {
   font-size: 18px;
   font-weight: 600;
-  color: #191C1E;
+  color: var(--color-text);
   line-height: 26px;
 }
 
-.status-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  height: 32px;
-  border-radius: 8px;
-  font-size: 14px;
-}
-
-.status-badge .status-icon {
-  width: 16px;
-  height: 16px;
-}
-
-.status-ongoing {
-  width: 92px;
-  background: #E1ECFF;
-  color: #1947FF;
+.status-badge.status-ongoing {
   border: 1px solid #A8B9FF;
-}
-
-.status-idle {
-  width: 92px;
-  background: #F1F5F9;
-  color: rgba(0, 0, 0, 0.88);
-  border: 1px solid #E2E8F0;
 }
 
 .card-body {
@@ -183,7 +158,7 @@ const formattedPeriod = computed(() => {
 }
 
 .info-label {
-  font-family: 'PingFang SC', '苹方-简', '苹方', sans-serif;
+  font-family: var(--font-family);
   font-size: 14px;
   font-weight: normal;
   line-height: 24px;
@@ -193,12 +168,12 @@ const formattedPeriod = computed(() => {
 }
 
 .info-value {
-  font-family: 'PingFang SC', '苹方-简', '苹方', sans-serif;
+  font-family: var(--font-family);
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
   letter-spacing: normal;
-  color: #191C1E;
+  color: var(--color-text);
   flex: 1;
   min-width: 0;
   overflow: hidden;
@@ -214,7 +189,7 @@ const formattedPeriod = computed(() => {
   flex: 1;
   min-height: 0;
   gap: 8px;
-  color: #B7BBC2;
+  color: var(--color-text-mute);
   font-size: 13px;
 }
 

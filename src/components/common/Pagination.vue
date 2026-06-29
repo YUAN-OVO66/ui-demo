@@ -47,7 +47,7 @@ const handlePageSizeChange = (size: number) => {
 export default { name: 'Pagination' }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .pagination-bar {
   display: flex;
   justify-content: flex-end;
@@ -56,19 +56,19 @@ export default { name: 'Pagination' }
 .pagination-bar :deep(.el-pagination) {
   font-size: 14px;
   line-height: 14px;
-  color: #606266;
+  color: var(--color-text-secondary);
 }
 
 .pagination-bar :deep(.el-pagination *) {
   font-size: 14px;
   line-height: 14px;
-  color: #606266;
+  color: var(--color-text-secondary);
 }
 
 /* 选中页码 - 无背景，颜色 #1947FF */
 .pagination-bar :deep(.el-pager li.is-active) {
   background: transparent;
-  color: #1947FF;
+  color: var(--color-primary);
   font-weight: normal;
 }
 
@@ -80,9 +80,9 @@ export default { name: 'Pagination' }
 .pagination-bar :deep(.el-pagination button),
 .pagination-bar :deep(.el-pagination .btn-prev),
 .pagination-bar :deep(.el-pagination .btn-next) {
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
   box-sizing: border-box;
-  border: 1px solid #E5E7EB;
+  border: 1px solid var(--color-border);
   width: 28px;
   height: 28px;
   background: transparent;
@@ -99,9 +99,9 @@ export default { name: 'Pagination' }
 
 .pagination-bar :deep(.el-select__wrapper),
 .pagination-bar :deep(.el-input__wrapper) {
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
   box-sizing: border-box;
-  border: 1px solid #E5E7EB;
+  border: 1px solid var(--color-border);
   background: transparent;
   min-height: 28px;
   height: 28px;

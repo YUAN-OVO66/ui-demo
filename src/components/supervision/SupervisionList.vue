@@ -11,6 +11,7 @@ import {
   supervisionStatusMap,
   getPeriodTime,
   createInitialSupervisionFilter,
+  MOCK_TODAY,
   type SupervisionRecord,
   type SupervisionStatus,
   type SupervisionFilterState
@@ -33,7 +34,7 @@ const props = withDefaults(
     pageSizes?: number[]
   }>(),
   {
-    today: '2026-06-12',
+    today: MOCK_TODAY,
     pageSizes: () => [10, 20, 50, 100]
   }
 )
@@ -251,7 +252,7 @@ const formatPeriodTime = (periodLabel: string) => getPeriodTime(periodLabel)
 export default { name: 'SupervisionList' }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .supervision-list {
   flex: 1;
   min-height: 0;
@@ -278,7 +279,7 @@ export default { name: 'SupervisionList' }
   height: 20px;
   font-size: 14px;
   font-weight: normal;
-  color: #191C1E;
+  color: var(--color-text);
   white-space: nowrap;
 }
 
@@ -302,7 +303,7 @@ export default { name: 'SupervisionList' }
 .table-wrap {
   flex: 1;
   min-height: 0;
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   background: transparent;
 }
@@ -322,8 +323,8 @@ export default { name: 'SupervisionList' }
 
 /* 表头 */
 .table-wrap :deep(.el-table__header-wrapper) {
-  border-radius: 8px 0 0 0;
-  background: rgba(255, 255, 255, 0.6);
+  border-radius: var(--radius-md) 0 0 0;
+  background: var(--color-bg-page);
 }
 
 .table-wrap :deep(.el-table__header-wrapper th) {
@@ -332,7 +333,7 @@ export default { name: 'SupervisionList' }
   color: rgba(0, 0, 0, 0.88);
   text-align: left;
   background: transparent;
-  box-shadow: inset 0 -1px 0 0 #E5E7EB;
+  box-shadow: inset 0 -1px 0 0 var(--color-border);
 }
 
 /* 表格正文 */
@@ -353,50 +354,10 @@ export default { name: 'SupervisionList' }
 
 .table-wrap :deep(.el-table__body-wrapper tr:hover > td) {
   background: #f9fdff;
-  box-shadow: inset 0 -1px 0 0 #E5E7EB;
+  box-shadow: inset 0 -1px 0 0 var(--color-border);
 }
 
-/* 状态徽章 */
-.status-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  height: 32px;
-  border-radius: 8px;
-  font-size: 14px;
-}
-
-.status-badge .status-icon {
-  width: 16px;
-  height: 16px;
-}
-
-.status-ongoing {
-  width: 92px;
-  background: #E1ECFF;
-  color: #1947FF;
-}
-
-.status-pending {
-  width: 66px;
-  background: #F1F5F9;
-  color: rgba(0, 0, 0, 0.88);
-}
-
-.status-finished {
-  width: 92px;
-  background: #E1ECFF;
-  color: #1947FF;
-}
-
-/* 空状态 */
 .empty-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
   padding: 40px 0;
 }
 

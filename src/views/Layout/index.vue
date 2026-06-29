@@ -23,22 +23,34 @@ import SideBar from '@/components/layout/SideBar.vue'
   </el-container>
 </template>
 
-<style>
-html, body, #app {
+<style lang="scss">
+html, body {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   background-image: url('@/assets/layout/bg-01.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
 }
 
+body {
+  overflow: auto;
+}
+
+#app {
+  min-width: 1280px;
+  min-height: 720px;
+  width: 100%;
+  height: 100%;
+}
+
 .app-container {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+  min-width: 1280px;
+  min-height: 720px;
   flex-direction: column;
   background: transparent;
 }

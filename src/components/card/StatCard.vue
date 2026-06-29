@@ -19,7 +19,7 @@ defineProps<{
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .stat-card {
   width: 100%;
   height: 140px;
@@ -27,8 +27,8 @@ defineProps<{
   justify-content: space-between;
   align-items: center;
   padding: 24px;
-  border-radius: 12px;
-  transition: transform 0.2s;
+  border-radius: var(--radius-lg);
+  transition: transform var(--transition-base);
   box-sizing: border-box;
 }
 

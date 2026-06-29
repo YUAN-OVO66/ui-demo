@@ -6,6 +6,9 @@ import {
   type EvaluateTemplate
 } from '@/data/mockData'
 
+type EvaluateFieldValue = string | number | string[] | undefined
+type EvaluateFormData = Record<string, EvaluateFieldValue>
+
 const props = defineProps<{
   modelValue: boolean
 }>()
@@ -15,7 +18,7 @@ const emit = defineEmits<{
 }>()
 
 const activeTemplateId = ref('classroom')
-const formData = ref<Record<string, any>>({})
+const formData = ref<EvaluateFormData>({})
 
 const activeTemplate = computed<EvaluateTemplate | undefined>(() =>
   evaluateTemplates.find((t) => t.id === activeTemplateId.value)
@@ -28,7 +31,7 @@ watch(() => props.modelValue, (visible) => {
 
 /* 切换模板时重置表单，为各控件设置合理的初始值 */
 watch(activeTemplateId, () => {
-  const defaults: Record<string, any> = {}
+  const defaults: EvaluateFormData = {}
   if (activeTemplate.value) {
     for (const section of activeTemplate.value.sections) {
       for (const item of section.items) {
@@ -198,13 +201,13 @@ const handleSubmit = () => {
   </el-dialog>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .form-card {
   width: 480px;
   flex: 1;
   min-height: 0;
-  border-radius: 12px;
-  background: #FFFFFF;
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-white);
   display: flex;
   flex-direction: column;
   padding: 24px;
@@ -224,7 +227,7 @@ const handleSubmit = () => {
 .template-label {
   font-size: 14px;
   font-weight: 500;
-  color: #191C1E;
+  color: var(--color-text);
   white-space: nowrap;
 }
 
@@ -232,22 +235,30 @@ const handleSubmit = () => {
   width: 260px;
   height: 36px;
   border-radius: 6px;
-  background: #FFFFFF;
+  background: var(--color-bg-white);
   box-sizing: border-box;
-
 }
 
-:deep(.template-select .el-input__wrapper) {
+:deep(.template-select .el-input__wrapper),
+:deep(.item-select .el-input__wrapper),
+:deep(.item-input .el-input__wrapper),
+:deep(.item-number .el-input__wrapper) {
   height: 36px;
   border-radius: 6px;
-  background: #FFFFFF;
-  border: 1px solid #E7E7E9;
+  background: var(--color-bg-white);
+  border: 1px solid var(--color-border-light);
   box-shadow: none;
 }
 
 :deep(.template-select .el-input__wrapper:hover),
-:deep(.template-select .el-input__wrapper.is-focus) {
-  border-color: #E7E7E9;
+:deep(.template-select .el-input__wrapper.is-focus),
+:deep(.item-select .el-input__wrapper:hover),
+:deep(.item-select .el-input__wrapper.is-focus),
+:deep(.item-input .el-input__wrapper:hover),
+:deep(.item-input .el-input__wrapper.is-focus),
+:deep(.item-number .el-input__wrapper:hover),
+:deep(.item-number .el-input__wrapper.is-focus) {
+  border-color: var(--color-border-light);
   box-shadow: none;
 }
 
@@ -283,7 +294,7 @@ const handleSubmit = () => {
   gap: 8px;
   font-size: 15px;
   font-weight: 600;
-  color: #191C1E;
+  color: var(--color-text);
   margin-bottom: 14px;
 }
 
@@ -291,8 +302,8 @@ const handleSubmit = () => {
   content: '';
   width: 3px;
   height: 14px;
-  border-radius: 8px;
-  background: #1947FF;
+  border-radius: var(--radius-md);
+  background: var(--color-primary);
   flex-shrink: 0;
 }
 
@@ -310,11 +321,11 @@ const handleSubmit = () => {
 .item-label {
   font-size: 14px;
   font-weight: 500;
-  color: #191C1E;
+  color: var(--color-text);
 }
 
 .required-mark {
-  color: #F56C6C;
+  color: var(--color-danger);
   margin-right: 4px;
 }
 
@@ -326,25 +337,11 @@ const handleSubmit = () => {
   width: 180px;
 }
 
-:deep(.item-select .el-input__wrapper) {
-  height: 36px;
-  border-radius: 6px;
-  background: #FFFFFF;
-  border: 1px solid #E7E7E9;
-  box-shadow: none;
-}
-
-:deep(.item-select .el-input__wrapper:hover),
-:deep(.item-select .el-input__wrapper.is-focus) {
-  border-color: #E7E7E9;
-  box-shadow: none;
-}
-
 .item-textarea :deep(.el-textarea__inner) {
   min-height: 80px;
   border-radius: 6px;
-  background: #FFFFFF;
-  border: 1px solid #E7E7E9;
+  background: var(--color-bg-white);
+  border: 1px solid var(--color-border-light);
   box-shadow: none;
   resize: none;
   font-size: 14px;
@@ -355,36 +352,8 @@ const handleSubmit = () => {
   width: 280px;
 }
 
-:deep(.item-input .el-input__wrapper) {
-  height: 36px;
-  border-radius: 6px;
-  background: #FFFFFF;
-  border: 1px solid #E7E7E9;
-  box-shadow: none;
-}
-
-:deep(.item-input .el-input__wrapper:hover),
-:deep(.item-input .el-input__wrapper.is-focus) {
-  border-color: #E7E7E9;
-  box-shadow: none;
-}
-
 .item-number {
   width: 180px;
-}
-
-:deep(.item-number .el-input__wrapper) {
-  height: 36px;
-  border-radius: 6px;
-  background: #FFFFFF;
-  border: 1px solid #E7E7E9;
-  box-shadow: none;
-}
-
-:deep(.item-number .el-input__wrapper:hover),
-:deep(.item-number .el-input__wrapper.is-focus) {
-  border-color: #E7E7E9;
-  box-shadow: none;
 }
 
 .item-radio {
@@ -399,7 +368,7 @@ const handleSubmit = () => {
 }
 
 .item-textarea :deep(.el-textarea__inner:focus) {
-  border-color: #E7E7E9;
+  border-color: var(--color-border-light);
   box-shadow: none;
 }
 
@@ -413,59 +382,11 @@ const handleSubmit = () => {
 
 .placeholder-text {
   font-size: 14px;
-  color: #B7BBC2;
-}
-
-/* 底部 */
-.dialog-footer {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  flex-shrink: 0;
-  padding: 16px 0;
-}
-
-/* 弹窗头部 */
-.dialog-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.close-btn {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 24px;
-  height: 24px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.close-icon {
-  width: 20px;
-  height: 20px;
-}
-
-.dialog-title {
-  font-family: '苹方', 'PingFang SC', sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  line-height: normal;
-  text-align: center;
-  letter-spacing: normal;
-  color: #FFFFFF;
+  color: var(--color-text-mute);
 }
 </style>
 
-<style>
+<style lang="scss">
 /* 非 scoped — 穿透 append-to-body 的 el-dialog */
 .evaluate-dialog.el-dialog {
   width: 520px;
@@ -473,7 +394,7 @@ const handleSubmit = () => {
   background:
     url('@/assets/layout/bg-02.png') no-repeat top center / 100% auto,
     #E7F2FF;
-  border-radius: 18px;
+  border-radius: var(--radius-full);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -495,9 +416,5 @@ const handleSubmit = () => {
 
 .evaluate-dialog .el-dialog__footer {
   padding: 0;
-}
-
-.dialog-overlay {
-  background: rgba(0, 0, 0, 0.6);
 }
 </style>

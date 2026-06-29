@@ -10,7 +10,7 @@
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .base-page {
   position: relative;
   padding: 24px;
