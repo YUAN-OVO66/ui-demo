@@ -19,7 +19,7 @@ const currentRecord = computed(() => {
   return ongoing ?? supervisionTableData.find((r) => r.classroom === classroomId.value)
 })
 
-const videoUrl = 'https://cloud-test-1325485117.cos.ap-shanghai.myqcloud.com/test.mp4?q-sign-algorithm=sha1&q-ak=AKIDaQqW1KfwyoQw1vzcLRuO35cvEsgpu4ejWdr5pTZPxFXpuFX5-V6XZb5ILiSpesJp&q-sign-time=1782722566;1782726166&q-key-time=1782722566;1782726166&q-header-list=host&q-url-param-list=&q-signature=4567c9e5c19f4f7f751dfd8b049909975e386bbc&x-cos-security-token=pqwNqSaVwS68t7Qgdv5PPQWg5tPX9O3ab36fa8b751939c703e1d89f1df1948b8D82LGGBi9g9fVxCzOKGxFiq5etEF9rHQLD2FB0mcSfaxloWql52v1Gpgi54OajxWA-3Ww3Cfno4EtsO_UX1mWyBbceLbyUVqGuOZiXOTFpFjTxJLSc_730GLHtdc-5QOAH1UiUhdVyoYDGsWJbykP8osYQ4amwGhhtIFm7B13NjMeA_R8-nx0Tla3CTLEejOoM8c57-TUgS76I33VFA6GV3xMy8mbMRv5R8k47GQSIx0cWXOWF5x6tSFv5EQ4-RC_8pckqRRgVo92QwkSFiboA&'
+const videoUrl = import.meta.env.VITE_VIDEO_URL
 
 /* 顶部导航 */
 const handleBack = () => router.back()

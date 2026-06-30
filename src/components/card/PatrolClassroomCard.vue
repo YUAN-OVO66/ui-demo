@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import HlsPlayer from '@/components/video/HlsPlayer.vue'
 import ongoingIcon from '@/assets/supervision/status-ongoing-01.gif'
 import { supervisionPeriodOptions } from '@/data/mockData'
 
@@ -28,7 +27,6 @@ const formattedPeriod = computed(() => {
   return `${start} - ${end}（${num}节）`
 })
 
-const videoUrl = 'http://11.1.36.168:6899/live/cameraid/1000000%2456/substream/1.m3u8'
 </script>
 
 <template>
