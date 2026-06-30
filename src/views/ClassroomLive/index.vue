@@ -274,7 +274,8 @@ const classroomsByFloor = computed(() => {
 
 .panel-slide-enter-active,
 .panel-slide-leave-active {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: opacity var(--transition-slow) cubic-bezier(0.4, 0, 0.2, 1),
+              transform var(--transition-slow) cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .panel-slide-enter-from,
@@ -287,7 +288,7 @@ const classroomsByFloor = computed(() => {
   display: flex;
   gap: 24px;
   padding: 14px 24px;
-  border-bottom: 1px solid #e8e8e8;
+  border-bottom: 1px solid var(--color-border-muted);
   flex-shrink: 0;
 }
 
@@ -336,7 +337,7 @@ const classroomsByFloor = computed(() => {
   padding: 0 14px;
   border-radius: var(--radius-md);
   border: 1px solid transparent;
-  background: #f5f6fa;
+  background: var(--color-bg-tint);
   font-size: 13px;
   color: var(--color-text);
   cursor: pointer;
@@ -390,12 +391,6 @@ const classroomsByFloor = computed(() => {
   aspect-ratio: 790 / 444;
   border-radius: 10px;
   overflow: hidden;
-  background: #000;
-}
-
-.card-header-title {
-  font-size: 15px;
-  font-weight: 600;
-  color: var(--color-text);
+  background: var(--color-bg-dark);
 }
 </style>

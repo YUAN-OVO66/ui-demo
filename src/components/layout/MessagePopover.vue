@@ -214,7 +214,7 @@ function handleItemClick(item: { title: string; isRead: boolean; content: string
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: #E9EFFF;
+  background: var(--color-primary-bg);
   display: flex;
   align-items: center;
   justify-content: center;

@@ -319,7 +319,7 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
 }
 
 .segmented-item.active {
-  background: #fff;
+  background: var(--color-bg-white);
   color: var(--color-primary-soft);
   font-weight: 500;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -347,27 +347,15 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
 }
 
 .data-tabs :deep(.el-tabs__active-bar) {
-  background-color: #1947FF;
+  background-color: var(--color-primary);
 }
 
 .data-tabs :deep(.el-tabs__item.is-active) {
-  color: #1947FF;
+  color: var(--color-primary);
 }
 
 .data-tabs :deep(.el-tabs__item:hover) {
-  color: #1947FF;
-}
-
-.tab-pane-content {
-  min-height: 180px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.pane-hint {
-  font-size: 14px;
-  color: var(--color-text-mute);
+  color: var(--color-primary);
 }
 
 .no-control-hint {
@@ -416,7 +404,7 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
 
 .ptz-center {
   background: var(--color-primary);
-  color: #fff;
+  color: var(--color-text-invert);
 }
 
 .preset-area {
@@ -437,13 +425,13 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
   min-width: 0;
   height: 48px;
   border-radius: var(--radius-md);
-  background: #fff;
+  background: var(--color-bg-white);
   font-size: 14px;
   color: var(--color-text);
 }
 
 .preset-btn:hover {
-  background: #f0f4ff;
+  background: var(--color-primary-bg-tint);
   border: 1px solid var(--color-primary);
   border-color: var(--color-primary-hover);
   color: var(--color-primary);
@@ -453,13 +441,13 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
   width: 100%;
   height: 48px;
   border-radius: var(--radius-md);
-  background: #fff;
+  background: var(--color-bg-white);
   font-size: 14px;
   color: var(--color-text);
 }
 
 .screenshot-btn:hover {
-  background: #f0f4ff;
+  background: var(--color-primary-bg-tint);
   color: var(--color-primary);
   border: 1px solid var(--color-primary);
 }
@@ -469,13 +457,6 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
   height: 16px;
   margin-right: 4px;
   vertical-align: middle;
-}
-
-.preset-hint {
-  font-size: 12px;
-  color: #b7bbc2;
-  margin: 0;
-  line-height: 18px;
 }
 
 /* ========== 数据统计分栏 ========== */
@@ -489,7 +470,7 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
   align-items: center;
   height: 72px;
   border-radius: 10px;
-  background: #fff;
+  background: var(--color-bg-white);
   box-shadow: 0 4px 10px 0 rgba(214, 220, 225, 0.2);
   padding: 0 20px;
   margin-bottom: 10px;
@@ -551,7 +532,7 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  border-right: 1px solid #e8e8e8;
+  border-right: 1px solid var(--color-border-muted);
   padding: 0 8px;
 }
 
@@ -598,7 +579,7 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
 .message-item {
   padding: 10px 14px;
   border-radius: var(--radius-md);
-  background: #f9fafb;
+  background: var(--color-bg-hover);
 }
 
 .message-head {

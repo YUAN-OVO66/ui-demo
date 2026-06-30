@@ -87,7 +87,7 @@ body {
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
-  color: #022170;
+  color: var(--color-primary-deep);
   margin: 0;
 }
 

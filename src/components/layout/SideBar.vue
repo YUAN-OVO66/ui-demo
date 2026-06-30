@@ -93,23 +93,23 @@ const activeMenu = computed(() => {
   opacity: 0.9;
   background-color: var(--color-primary);
   box-shadow: 0px 6px 16px 0px rgba(0, 71, 255, 0.3);
-  color: #FFFFFF;
+  color: var(--color-text-invert);
 }
 
 :deep(.el-sub-menu__title:hover .el-icon),
 :deep(.el-menu-item:hover .el-icon) {
-  color: #FFFFFF;
+  color: var(--color-text-invert);
 }
 
 :deep(.el-menu-item.is-active) {
   border-radius: var(--radius-md);
   background-color: var(--color-primary-active);
   box-shadow: 0px 6px 16px 0px rgba(0, 71, 255, 0.3);
-  color: #FFFFFF;
+  color: var(--color-text-invert);
 }
 
 :deep(.el-menu-item.is-active .el-icon) {
-  color: #FFFFFF;
+  color: var(--color-text-invert);
 }
 
 .menu-icon {

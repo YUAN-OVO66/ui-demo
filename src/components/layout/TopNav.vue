@@ -110,7 +110,7 @@ const showMessagePopover = ref(false)
   width: 10px;
   height: 10px;
   background: var(--color-unread);
-  border: 2px solid #F5F8FE;
+  border: 2px solid var(--color-bg-tint);
   border-radius: 50%;
 }
 
@@ -154,7 +154,7 @@ const showMessagePopover = ref(false)
   background: var(--color-bg-page-strong);
   border: 1px solid var(--color-border-soft);
   cursor: pointer;
-  transition: all var(--transition-base);
+  transition: background var(--transition-base), border-color var(--transition-base);
 }
 
 .role-switch:hover {
@@ -167,18 +167,19 @@ const showMessagePopover = ref(false)
   font-weight: 500;
 }
 
-.logout-btn {
+.logout-btn.el-button {
   width: 44px;
   height: 44px;
   padding: 0;
-  background: transparent !important;
-  border: none !important;
+  background: transparent;
+  border: none;
 }
 
-.logout-btn:hover {
+.logout-btn.el-button:hover,
+.logout-btn.el-button:focus {
   color: var(--color-danger);
-  background: transparent !important;
-  border: none !important;
+  background: transparent;
+  border: none;
 }
 </style>
 

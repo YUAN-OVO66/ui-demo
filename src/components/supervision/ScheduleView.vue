@@ -8,6 +8,8 @@ import {
   type SupervisionRecord
 } from '@/data/mockData'
 
+defineOptions({ name: 'ScheduleView' })
+
 // 搜索类别选项
 const categoryOptions = [
   { value: '教室', label: '教室' },
@@ -347,10 +349,6 @@ const getCourseColor = (record: SupervisionRecord): string =>
   </div>
 </template>
 
-<script lang="ts">
-export default { name: 'ScheduleView' }
-</script>
-
 <style scoped lang="scss">
 .schedule-view {
   flex: 1;
@@ -404,7 +402,7 @@ export default { name: 'ScheduleView' }
   color: var(--color-text-secondary);
   font-size: 14px;
   cursor: pointer;
-  transition: all var(--transition-slow);
+  transition: transform var(--transition-slow), opacity var(--transition-slow);
   font-weight: 500;
   border-radius: 6px;
 }
@@ -547,7 +545,7 @@ export default { name: 'ScheduleView' }
   padding: 10px 12px;
   border-radius: var(--radius-md);
   cursor: pointer;
-  transition: all var(--transition-slow);
+  transition: background var(--transition-slow), border-color var(--transition-slow);
   border: 1px solid transparent;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
   display: flex;

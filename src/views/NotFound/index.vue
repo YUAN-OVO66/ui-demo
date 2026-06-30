@@ -35,7 +35,7 @@ const router = useRouter()
 
 .not-found-tip {
   font-size: 16px;
-  color: #697BA9;
+  color: var(--color-text-soft);
   margin: 0;
 }
 

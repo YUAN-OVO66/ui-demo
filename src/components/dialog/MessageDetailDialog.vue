@@ -63,13 +63,13 @@ const handleClose = () => {
 .detail-title {
   font-size: 16px;
   font-weight: 500;
-  color: #1D2129;
+  color: var(--color-text-deep);
   margin: 0 0 16px;
 }
 
 .detail-content {
   font-size: 14px;
-  color: #4E5969;
+  color: var(--color-text-secondary);
   line-height: 1.8;
 }
 
@@ -85,7 +85,7 @@ const handleClose = () => {
   width: 60px;
   height: 36px;
   font-size: 14px;
-  color: #FFFFFF;
+  color: var(--color-text-invert);
   background: var(--color-primary);
   border: none;
   border-radius: var(--radius-sm);
@@ -99,7 +99,7 @@ const handleClose = () => {
   border-radius: var(--radius-full);
   background:
     url('@/assets/layout/bg-02.png') no-repeat top center / 100% auto,
-    #E7F2FF;
+    var(--color-primary-bg-light);
   overflow: hidden;
   display: flex;
   flex-direction: column;

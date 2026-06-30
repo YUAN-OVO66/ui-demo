@@ -17,6 +17,8 @@ import {
   type SupervisionFilterState
 } from '@/data/mockData'
 
+defineOptions({ name: 'SupervisionList' })
+
 type TabKey = 'ongoing' | 'today' | 'all'
 
 const tabs: { key: TabKey; label: string }[] = [
@@ -247,10 +249,6 @@ const formatPeriodTime = (periodLabel: string) => getPeriodTime(periodLabel)
     />
   </div>
 </template>
-
-<script lang="ts">
-export default { name: 'SupervisionList' }
-</script>
 
 <style scoped lang="scss">
 .supervision-list {

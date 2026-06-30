@@ -210,7 +210,7 @@ const handleScheduleClick = (tab: 'today' | 'ongoing') => {
   background: var(--color-bg-page);
   border-radius: var(--radius-lg);
   cursor: pointer;
-  transition: all var(--transition-base);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
   background-size: cover;
   background-position: center;
 }

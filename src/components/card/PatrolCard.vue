@@ -79,6 +79,6 @@ const hasMultipleFields = computed(() => {
   font-weight: normal;
   line-height: normal;
   text-align: center;
-  color: #373737;
+  color: var(--color-text);
 }
 </style>

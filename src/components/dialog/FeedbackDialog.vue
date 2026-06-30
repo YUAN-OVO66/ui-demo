@@ -246,24 +246,24 @@ const handleSubmit = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all var(--transition-fast);
+  transition: background var(--transition-fast), color var(--transition-fast);
   padding: 0;
 }
 
 .toolbar-btn:hover {
-  background: #F0F0F0;
+  background: var(--color-bg-soft);
   color: var(--color-text);
 }
 
 .toolbar-btn.active {
-  background: #E8F0FE;
+  background: var(--color-primary-bg-pale);
   color: var(--color-primary-soft);
 }
 
 .toolbar-divider {
   width: 1px;
   height: 18px;
-  background: #E0E0E0;
+  background: var(--color-border-strong);
   margin: 0 4px;
 }
 
@@ -302,7 +302,7 @@ const handleSubmit = () => {
 }
 
 :deep(.tiptap-editor-inner pre) {
-  background: #F5F5F5;
+  background: var(--color-bg-mute);
   border-radius: 4px;
   padding: 8px 12px;
   margin: 0 0 8px;
@@ -312,7 +312,7 @@ const handleSubmit = () => {
 }
 
 :deep(.tiptap-editor-inner code) {
-  background: #F0F0F0;
+  background: var(--color-bg-soft);
   border-radius: 3px;
   padding: 2px 4px;
   font-family: monospace;
@@ -320,7 +320,7 @@ const handleSubmit = () => {
 }
 
 :deep(.tiptap-editor-inner mark) {
-  background: #FFF3B0;
+  background: var(--color-warning-bg);
   border-radius: 2px;
   padding: 0 2px;
 }

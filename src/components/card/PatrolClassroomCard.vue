@@ -123,22 +123,7 @@ const formattedPeriod = computed(() => {
 }
 
 .status-badge.status-ongoing {
-  border: 1px solid #A8B9FF;
-}
-
-.video-preview {
-  width: 100%;
-  height: 120px;
-  background: #000;
-  border-radius: 8px;
-  overflow: hidden;
-  position: relative;
-}
-
-.video-player {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  border: 1px solid var(--color-primary-soft);
 }
 
 .card-body {
@@ -170,7 +155,7 @@ const formattedPeriod = computed(() => {
   font-weight: normal;
   line-height: 24px;
   letter-spacing: normal;
-  color: #64748B;
+  color: var(--color-text-secondary);
   flex-shrink: 0;
 }
 

@@ -5,31 +5,45 @@
   --color-primary-hover: #3b65ff;
   --color-primary-active: #0f3df4;
   --color-primary-soft: #4080ff;
+  --color-primary-deep: #022170;
   --color-primary-bg: #e1ecff;
   --color-primary-bg-soft: #ecf3fb;
+  --color-primary-bg-hover: rgba(25, 71, 255, 0.06);
+  --color-primary-bg-tint: #f0f4ff;
+  --color-primary-bg-light: #E7F2FF;
+  --color-primary-bg-pale: #E8F0FE;
 
   /* 文字 */
   --color-text: #191c1e;
   --color-text-strong: #000000;
+  --color-text-deep: #1D2129;
   --color-text-secondary: #606266;
   --color-text-muted: #909399;
   --color-text-soft: #8c9099;
   --color-text-mute: #b7bbc2;
   --color-text-placeholder: #a8abb2;
+  --color-text-invert: #ffffff;
 
   /* 边框 & 背景 */
   --color-border: #e5e7eb;
   --color-border-light: #e7e7e9;
   --color-border-soft: rgba(105, 123, 169, 0.1);
+  --color-border-muted: #e8e8e8;
+  --color-border-strong: #E0E0E0;
   --color-bg-white: #ffffff;
   --color-bg-hover: #f9f9f9;
+  --color-bg-soft: #F0F0F0;
+  --color-bg-mute: #F5F5F5;
+  --color-bg-tint: #F5F6FA;
   --color-bg-page: rgba(255, 255, 255, 0.6);
   --color-bg-page-soft: rgba(255, 255, 255, 0.4);
   --color-bg-page-strong: rgba(255, 255, 255, 0.7);
+  --color-bg-dark: #000000;
 
   /* 状态色 */
   --color-danger: #f56c6c;
   --color-unread: #E30000;
+  --color-warning-bg: #FFF3B0;
 
   /* 字体 */
   --font-family: 'PingFang SC', '苹方-简', '苹方', sans-serif;
@@ -41,11 +55,18 @@
   --radius-xl: 16px;
   --radius-full: 18px;
 
+  /* 间距比例尺 */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+
   /* 阴影 */
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
   --shadow-card: 0 4px 14px 0 rgba(190, 198, 223, 0.2);
-  --shadow-card-hover: 0 10px 22px rgba(190, 198, 223, 0.28);
   --shadow-popover: 0 10px 30px 0 rgba(190, 198, 223, 0.4);
 
   /* 过渡 */
@@ -138,20 +159,20 @@ body {
 
 /* ========== 下拉框全局样式 ========== */
 .el-select-dropdown__item.is-selected {
-  color: #1947FF;
+  color: var(--color-primary);
   font-weight: 600;
 }
 
 .el-select-dropdown__item:hover {
-  background-color: rgba(25, 71, 255, 0.06);
+  background-color: var(--color-primary-bg-hover);
 }
 
 .el-select-dropdown__item.is-hovering {
-  background-color: rgba(25, 71, 255, 0.06);
+  background-color: var(--color-primary-bg-hover);
 }
 
 .el-select__wrapper.is-focused {
-  box-shadow: 0 0 0 1px #1947FF inset;
+  box-shadow: 0 0 0 1px var(--color-primary) inset;
 }
 
 /* ========== 通用面板 ========== */

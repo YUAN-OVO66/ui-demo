@@ -276,11 +276,11 @@ const handleSubmit = () => {
   display: none;
 }
 
-/* 每个 section 独立卡片，背景 #F5F6FA */
+/* 每个 section 独立卡片 */
 .template-section {
   padding: 16px;
   border-radius: 10px;
-  background: #F5F6FA;
+  background: var(--color-bg-tint);
   margin-bottom: 12px;
 }
 
@@ -393,7 +393,7 @@ const handleSubmit = () => {
   height: 878px;
   background:
     url('@/assets/layout/bg-02.png') no-repeat top center / 100% auto,
-    #E7F2FF;
+    var(--color-primary-bg-light);
   border-radius: var(--radius-full);
   overflow: hidden;
   display: flex;

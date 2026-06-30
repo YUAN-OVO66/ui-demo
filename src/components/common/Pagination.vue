@@ -1,4 +1,6 @@
 <script setup lang="ts">
+defineOptions({ name: 'Pagination' })
+
 const props = withDefaults(
   defineProps<{
     currentPage: number
@@ -42,10 +44,6 @@ const handlePageSizeChange = (size: number) => {
     />
   </div>
 </template>
-
-<script lang="ts">
-export default { name: 'Pagination' }
-</script>
 
 <style scoped lang="scss">
 .pagination-bar {
