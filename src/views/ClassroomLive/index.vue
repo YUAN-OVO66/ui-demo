@@ -248,7 +248,7 @@ const classroomsByFloor = computed(() => {
 .header-info {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 24px;
 }
 
 .course-title {

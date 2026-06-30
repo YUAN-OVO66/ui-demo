@@ -53,13 +53,6 @@ const showMessagePopover = ref(false)
         <el-avatar :src="DefaultAvatar" :size="44" fit="cover" class="avatar" />
         <span class="username">admin</span>
       </div>
-      <!-- 角色切换 -->
-      <el-tooltip content="点击切换角色" placement="bottom">
-        <div class="role-switch" @click="showRoleDropdown = !showRoleDropdown">
-          <span class="role-text">{{ currentRole }}</span>
-          <img :src="IconSwitch" class="switch-icon" />
-        </div>
-      </el-tooltip>
       <!-- 退出登录 -->
       <el-tooltip content="退出登录" placement="bottom">
         <el-button text class="logout-btn">
@@ -141,30 +134,6 @@ const showMessagePopover = ref(false)
 
 .avatar {
   border: 1px solid var(--color-border-soft);
-}
-
-.role-switch {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 110px;
-  height: 44px;
-  border-radius: var(--radius-md);
-  background: var(--color-bg-page-strong);
-  border: 1px solid var(--color-border-soft);
-  cursor: pointer;
-  transition: background var(--transition-base), border-color var(--transition-base);
-}
-
-.role-switch:hover {
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: var(--shadow-card);
-}
-
-.role-text {
-  font-size: 14px;
-  font-weight: 500;
 }
 
 .logout-btn.el-button {

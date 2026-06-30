@@ -70,9 +70,7 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
                     <el-button :icon="IconUp" @click="handlePtz('up')" />
                     <div />
                     <el-button :icon="IconLeft" @click="handlePtz('left')" />
-                    <el-button class="ptz-center" @click="handlePtz('auto')">
-                      <icon-refresh />
-                    </el-button>
+                    <el-button class="ptz-center" :icon="IconRefresh" @click="handlePtz('auto')" />
                     <el-button :icon="IconRight" @click="handlePtz('right')" />
                     <div />
                     <el-button :icon="IconDown" @click="handlePtz('down')" />
@@ -407,8 +405,17 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
   transition: background var(--transition-base), border-color var(--transition-base), color var(--transition-base);
 }
 
+/* 覆盖 Element Plus 默认的 active 状态 */
+.ptz-grid .el-button:focus,
+.ptz-grid .el-button:active {
+  background: var(--el-fill-color-blank);
+  border-color: var(--el-border-color);
+  color: var(--el-text-color-regular);
+  outline: none;
+}
+
 .ptz-grid .el-button:hover,
-.ptz-grid .el-button:focus {
+.ptz-grid .el-button:focus:hover {
   background: var(--color-primary-bg-tint);
   border-color: var(--color-primary);
   color: var(--color-primary);
@@ -419,8 +426,16 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
   color: var(--color-text-invert);
 }
 
+.ptz-center:focus,
+.ptz-center:active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-text-invert);
+  outline: none;
+}
+
 .ptz-center:hover,
-.ptz-center:focus {
+.ptz-center:focus:hover {
   background: var(--color-primary-hover);
   border-color: var(--color-primary-hover);
   color: var(--color-text-invert);
@@ -670,5 +685,26 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
   height: 36px;
   border-radius: var(--radius-md);
   opacity: 0.5;
+}
+
+/* Arco Design 图标样式 */
+.ptz-grid :deep(.arco-icon) {
+  display: inline-block;
+  color: inherit;
+  font-style: normal;
+  line-height: 0;
+  text-align: center;
+  text-transform: none;
+  vertical-align: -0.125em;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ptz-grid :deep(.arco-icon svg) {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
 }
 </style>
