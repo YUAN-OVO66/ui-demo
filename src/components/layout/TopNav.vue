@@ -109,7 +109,7 @@ const showMessagePopover = ref(false)
   right: 0.1px;
   width: 10px;
   height: 10px;
-  background: #E30000;
+  background: var(--color-unread);
   border: 2px solid #F5F8FE;
   border-radius: 50%;
 }

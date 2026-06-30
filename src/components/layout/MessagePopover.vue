@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 import IconUnread from '@/assets/layout/icon-06.svg'
 import IconRead from '@/assets/layout/icon-07.svg'
 import { notificationList } from '@/data/mockData'
@@ -48,10 +48,12 @@ const showDetail = ref(false)
 const selectedTitle = ref('')
 const selectedContent = ref('')
 
-// 恢复后若已无未读，同步给父组件
-if (!messageList.value.some(item => !item.isRead)) {
-  emit('update:hasUnread', false)
-}
+// 恢复后若已无未读，同步给父组件（移至 onMounted 避免初始化阶段触发 emit）
+onMounted(() => {
+  if (!messageList.value.some(item => !item.isRead)) {
+    emit('update:hasUnread', false)
+  }
+})
 
 watch(
   messageList,
@@ -107,8 +109,8 @@ function handleItemClick(item: { title: string; isRead: boolean; content: string
     <div class="popover-content">
       <template v-if="currentList.length">
         <div
-          v-for="(item, index) in currentList"
-          :key="index"
+          v-for="item in currentList"
+          :key="item.title"
           class="content-item"
           @click="handleItemClick(item)"
         >
@@ -160,12 +162,12 @@ function handleItemClick(item: { title: string; isRead: boolean; content: string
   padding: 0 4px 12px;
   cursor: pointer;
   position: relative;
-  color: #86909C;
+  color: var(--color-text-secondary);
   transition: color var(--transition-base);
 }
 
 .tab-item:hover {
-  color: #4E5969;
+  color: var(--color-text);
 }
 
 .tab-item.active {
@@ -230,7 +232,7 @@ function handleItemClick(item: { title: string; isRead: boolean; content: string
   right: -2px;
   width: 10px;
   height: 10px;
-  background: #E30000;
+  background: var(--color-unread);
   border: 2px solid var(--color-bg-white);
   border-radius: 50%;
 }
@@ -272,12 +274,12 @@ function handleItemClick(item: { title: string; isRead: boolean; content: string
   font-family: var(--font-family);
   font-size: 12px;
   font-weight: normal;
-  color: #8C8C8C;
+  color: var(--color-text-muted);
   border-radius: var(--radius-sm);
   transition: color var(--transition-base);
 }
 
 .read-all:hover {
-  color: #595959;
+  color: var(--color-text);
 }
 </style>

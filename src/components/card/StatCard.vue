@@ -44,13 +44,13 @@ defineProps<{
 
 .stat-label {
   font-size: 14px;
-  color: #666;
+  color: var(--color-text-secondary);
 }
 
 .stat-count {
   font-size: 36px;
   font-weight: 600;
-  color: #333;
+  color: var(--color-text);
 }
 
 .stat-icon {

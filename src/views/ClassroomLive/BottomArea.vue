@@ -211,7 +211,7 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
                 </div>
                 <div class="messages-list">
                   <template v-if="messages.length > 0">
-                    <div v-for="(msg, i) in displayMessages" :key="i" class="message-item">
+                    <div v-for="msg in displayMessages" :key="`${msg.name}-${msg.time}`" class="message-item">
                       <div class="message-head">
                         <span class="message-name">{{ msg.name }}</span>
                         <span class="message-time">{{ msg.time }}</span>
@@ -312,7 +312,7 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
   line-height: 30px;
   text-align: center;
   font-size: 13px;
-  color: #5b6470;
+  color: var(--color-text-secondary);
   border-radius: 4px;
   cursor: pointer;
   transition: background var(--transition-base), color var(--transition-base);
@@ -327,7 +327,7 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
 
 .control-hint {
   font-size: 13px;
-  color: #64748b;
+  color: var(--color-text-secondary);
   margin: 10px 0 0;
   line-height: 20px;
 }
@@ -620,7 +620,7 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
 
 .message-content {
   font-size: 13px;
-  color: #5b6470;
+  color: var(--color-text-secondary);
   line-height: 20px;
   margin: 0;
 }

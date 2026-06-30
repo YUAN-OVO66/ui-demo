@@ -29,6 +29,7 @@
 
   /* 状态色 */
   --color-danger: #f56c6c;
+  --color-unread: #E30000;
 
   /* 字体 */
   --font-family: 'PingFang SC', '苹方-简', '苹方', sans-serif;
@@ -117,9 +118,9 @@ body {
   height: 36px;
 }
 
-.form-select :deep(.el-select__wrapper),
-.form-input :deep(.el-select__wrapper),
-.form-input :deep(.el-input__wrapper) {
+.form-select .el-select__wrapper,
+.form-input .el-select__wrapper,
+.form-input .el-input__wrapper {
   min-height: 36px;
   height: 36px;
   border-radius: var(--radius-md);
@@ -129,9 +130,9 @@ body {
   gap: 0;
 }
 
-.form-select :deep(.el-select__wrapper.is-focused),
-.form-input :deep(.el-select__wrapper.is-focused),
-.form-input :deep(.el-input.is-focus .el-input__wrapper) {
+.form-select .el-select__wrapper.is-focused,
+.form-input .el-select__wrapper.is-focused,
+.form-input .el-input.is-focus .el-input__wrapper {
   box-shadow: 0 0 0 1px var(--color-primary) inset;
 }
 

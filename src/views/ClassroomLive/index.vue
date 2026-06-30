@@ -194,7 +194,7 @@ const classroomsByFloor = computed(() => {
   background: var(--color-bg-page-strong);
   border: 1px solid var(--color-border-soft);
   font-size: 14px;
-  color: #5b6470;
+  color: var(--color-text-secondary);
   cursor: pointer;
   padding: 0 10px;
 }
@@ -253,7 +253,7 @@ const classroomsByFloor = computed(() => {
   line-height: 24px;
   text-align: right;
   letter-spacing: normal;
-  color: #64748b;
+  color: var(--color-text-secondary);
 }
 
 /* ========== 更多教室弹出面板 ========== */
@@ -293,7 +293,7 @@ const classroomsByFloor = computed(() => {
 
 .building-tab {
   font-size: 14px;
-  color: #5b6470;
+  color: var(--color-text-secondary);
   cursor: pointer;
   padding: 4px 0;
   border-bottom: 2px solid transparent;

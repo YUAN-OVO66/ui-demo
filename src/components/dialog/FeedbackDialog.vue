@@ -242,7 +242,7 @@ const handleSubmit = () => {
   cursor: pointer;
   font-size: 14px;
   font-weight: 600;
-  color: #666;
+  color: var(--color-text-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -252,7 +252,7 @@ const handleSubmit = () => {
 
 .toolbar-btn:hover {
   background: #F0F0F0;
-  color: #333;
+  color: var(--color-text);
 }
 
 .toolbar-btn.active {
@@ -298,7 +298,7 @@ const handleSubmit = () => {
   border-left: 3px solid var(--color-primary-soft);
   margin: 0 0 8px;
   padding-left: 12px;
-  color: #666;
+  color: var(--color-text-secondary);
 }
 
 :deep(.tiptap-editor-inner pre) {

@@ -92,8 +92,8 @@ const handleSubmit = () => {
       <!-- 模板渲染卡片 -->
       <div v-if="activeTemplate" class="template-card">
         <div
-          v-for="(section, sIdx) in activeTemplate.sections"
-          :key="sIdx"
+          v-for="section in activeTemplate.sections"
+          :key="section.title"
           class="template-section"
         >
           <div class="section-title">{{ section.title }}</div>

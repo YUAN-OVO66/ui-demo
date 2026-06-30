@@ -15,13 +15,17 @@ import {
 type TabKey = 'ongoing' | 'today' | 'all'
 type ViewMode = 'list' | 'schedule'
 
+const VALID_TABS: TabKey[] = ['ongoing', 'today', 'all']
+const VALID_MODES: ViewMode[] = ['list', 'schedule']
+
 const route = useRoute()
 const router = useRouter()
 const activeTab = ref<TabKey>('ongoing')
 
 // 从 localStorage 恢复视图模式，默认 'list'
+const stored = localStorage.getItem('teachers-view-mode')
 const viewMode = ref<ViewMode>(
-  (localStorage.getItem('teachers-view-mode') as ViewMode) || 'list'
+  VALID_MODES.includes(stored as ViewMode) ? stored as ViewMode : 'list'
 )
 
 // 切换时持久化
@@ -33,17 +37,19 @@ watch(viewMode, (val) => {
 const filterState = ref<SupervisionFilterState>(createInitialSupervisionFilter())
 
 // 监听路由 query 参数切换选项卡
-onMounted(() => {
-  const tab = route.query.tab as TabKey
-  if (tab && ['ongoing', 'today', 'all'].includes(tab)) {
-    activeTab.value = tab
+const applyTabFromQuery = (tab: string | string[] | undefined) => {
+  const value = Array.isArray(tab) ? tab[0] : tab
+  if (value && VALID_TABS.includes(value as TabKey)) {
+    activeTab.value = value as TabKey
   }
+}
+
+onMounted(() => {
+  applyTabFromQuery(route.query.tab)
 })
 
 watch(() => route.query.tab, (tab) => {
-  if (tab && ['ongoing', 'today', 'all'].includes(tab as string)) {
-    activeTab.value = tab as TabKey
-  }
+  applyTabFromQuery(tab)
 })
 
 const handleRowClick = (record: SupervisionRecord) => {
@@ -126,7 +132,7 @@ const handleRowClick = (record: SupervisionRecord) => {
   gap: 6px;
   padding: 6px 14px;
   font-size: 14px;
-  color: #5b6470;
+  color: var(--color-text-secondary);
   background: transparent;
   border: none;
   border-radius: 6px;
@@ -154,7 +160,7 @@ const handleRowClick = (record: SupervisionRecord) => {
   padding: 10px 24px;
   font-size: 16px;
   font-weight: 500;
-  color: #5b6470;
+  color: var(--color-text-secondary);
   background: transparent;
   border: none;
   border-bottom: 2px solid transparent;

@@ -410,8 +410,8 @@ export default { name: 'ScheduleView' }
 }
 
 .week-nav-btn:hover {
-  color: #409eff;
-  background: rgba(64, 158, 255, 0.05);
+  color: var(--color-primary);
+  background: rgba(25, 71, 255, 0.05);
 }
 
 .week-nav-btn .arrow {
@@ -491,7 +491,7 @@ export default { name: 'ScheduleView' }
 
 .day-date {
   font-size: 12px;
-  color: #666;
+  color: var(--color-text-secondary);
   font-weight: 400;
 }
 

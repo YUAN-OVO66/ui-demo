@@ -235,7 +235,7 @@ const handleScheduleClick = (tab: 'today' | 'ongoing') => {
 
 .arrow-icon {
   margin-left: auto;
-  color: #999;
+  color: var(--color-text-muted);
 }
 
 .stats-grid {

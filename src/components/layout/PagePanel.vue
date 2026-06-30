@@ -26,7 +26,7 @@ defineProps<{
   align-items: center;
   justify-content: center;
   height: 240px;
-  color: #999;
+  color: var(--color-text-muted);
   font-size: 16px;
   background: var(--color-bg-page-soft);
   border-radius: var(--radius-lg);
