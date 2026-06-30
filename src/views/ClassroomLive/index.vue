@@ -83,28 +83,30 @@ const classroomsByFloor = computed(() => {
     </header>
 
     <!-- 更多教室弹出面板 -->
-    <div v-if="showMoreRooms" class="more-rooms-panel">
-      <div class="building-tabs">
-        <span
-          v-for="b in buildingList"
-          :key="b.id"
-          :class="['building-tab', { active: activeBuilding === b.prefix }]"
-          @click="activeBuilding = b.prefix"
-        >{{ b.name }}</span>
-      </div>
-      <div class="classroom-floors">
-        <div v-for="([floor, rooms]) in classroomsByFloor" :key="floor" class="floor-row">
-          <div class="floor-rooms">
-            <button
-              v-for="room in rooms"
-              :key="room.id"
-              :class="['room-btn', { active: room.classroom === classroomId }]"
-              @click="handleRoomClick(room.classroom)"
-            >{{ room.classroom }}</button>
+    <Transition name="panel-slide">
+      <div v-if="showMoreRooms" class="more-rooms-panel">
+        <div class="building-tabs">
+          <span
+            v-for="b in buildingList"
+            :key="b.id"
+            :class="['building-tab', { active: activeBuilding === b.prefix }]"
+            @click="activeBuilding = b.prefix"
+          >{{ b.name }}</span>
+        </div>
+        <div class="classroom-floors">
+          <div v-for="([floor, rooms]) in classroomsByFloor" :key="floor" class="floor-row">
+            <div class="floor-rooms">
+              <button
+                v-for="room in rooms"
+                :key="room.id"
+                :class="['room-btn', { active: room.classroom === classroomId }]"
+                @click="handleRoomClick(room.classroom)"
+              >{{ room.classroom }}</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Transition>
 
     <!-- 2. 中部展示区 -->
     <section class="main-display">
@@ -148,11 +150,12 @@ const classroomsByFloor = computed(() => {
   flex-direction: column;
   padding: 10px;
   gap: 10px;
+  position: relative;
 }
 
 /* ========== 整体页面架构 ========== */
 .classroom-live {
-  height: 100vh;
+  height: 100%;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -255,7 +258,10 @@ const classroomsByFloor = computed(() => {
 
 /* ========== 更多教室弹出面板 ========== */
 .more-rooms-panel {
-  width: 100%;
+  position: absolute;
+  top: 80px;
+  left: 10px;
+  right: 10px;
   height: 240px;
   border-radius: var(--radius-full);
   background: var(--color-bg-white);
@@ -263,6 +269,18 @@ const classroomsByFloor = computed(() => {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  z-index: 10;
+}
+
+.panel-slide-enter-active,
+.panel-slide-leave-active {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.panel-slide-enter-from,
+.panel-slide-leave-to {
+  opacity: 0;
+  transform: translateY(-12px) scaleY(0.95);
 }
 
 .building-tabs {

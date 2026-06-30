@@ -346,6 +346,18 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
   margin-bottom: 16px;
 }
 
+.data-tabs :deep(.el-tabs__active-bar) {
+  background-color: #1947FF;
+}
+
+.data-tabs :deep(.el-tabs__item.is-active) {
+  color: #1947FF;
+}
+
+.data-tabs :deep(.el-tabs__item:hover) {
+  color: #1947FF;
+}
+
 .tab-pane-content {
   min-height: 180px;
   display: flex;

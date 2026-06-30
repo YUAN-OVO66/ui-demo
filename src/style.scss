@@ -135,6 +135,24 @@ body {
   box-shadow: 0 0 0 1px var(--color-primary) inset;
 }
 
+/* ========== 下拉框全局样式 ========== */
+.el-select-dropdown__item.is-selected {
+  color: #1947FF;
+  font-weight: 600;
+}
+
+.el-select-dropdown__item:hover {
+  background-color: rgba(25, 71, 255, 0.06);
+}
+
+.el-select-dropdown__item.is-hovering {
+  background-color: rgba(25, 71, 255, 0.06);
+}
+
+.el-select__wrapper.is-focused {
+  box-shadow: 0 0 0 1px #1947FF inset;
+}
+
 /* ========== 通用面板 ========== */
 .panel {
   width: 100%;
