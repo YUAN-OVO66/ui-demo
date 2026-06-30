@@ -423,8 +423,8 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 380px;
-  flex-shrink: 0;
+  flex: 0 1 380px;
+  min-width: 0;
 }
 
 .preset-row {
@@ -434,6 +434,7 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
 
 .preset-btn {
   flex: 1;
+  min-width: 0;
   height: 48px;
   border-radius: var(--radius-md);
   background: #fff;
