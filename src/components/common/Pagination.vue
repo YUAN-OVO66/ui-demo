@@ -84,6 +84,13 @@ const handlePageSizeChange = (size: number) => {
   width: 28px;
   height: 28px;
   background: transparent;
+  transition: border-color 0.2s;
+}
+
+.pagination-bar :deep(.el-pagination button:hover),
+.pagination-bar :deep(.el-pagination .btn-prev:hover),
+.pagination-bar :deep(.el-pagination .btn-next:hover) {
+  border-color: var(--color-primary);
 }
 
 .pagination-bar :deep(.el-select) {
@@ -103,6 +110,12 @@ const handlePageSizeChange = (size: number) => {
   background: transparent;
   min-height: 28px;
   height: 28px;
+  transition: border-color 0.2s;
+}
+
+.pagination-bar :deep(.el-select__wrapper:hover),
+.pagination-bar :deep(.el-input__wrapper:hover) {
+  border-color: var(--color-primary);
 }
 
 .pagination-bar :deep(.el-input__wrapper) {

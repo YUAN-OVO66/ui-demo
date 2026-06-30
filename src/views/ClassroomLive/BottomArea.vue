@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { Top, Bottom, Back, Right, Refresh } from '@element-plus/icons-vue'
+import { IconUp, IconDown, IconLeft, IconRight, IconRefresh } from '@arco-design/web-vue/es/icon'
 
 import { getMessagesByClassroom } from '@/data/mockData'
 import EvaluateDialog from '@/components/dialog/EvaluateDialog.vue'
@@ -67,15 +67,15 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
                 <div class="ptz-area">
                   <div class="ptz-grid">
                     <div />
-                    <el-button :icon="Top" @click="handlePtz('up')" />
+                    <el-button :icon="IconUp" @click="handlePtz('up')" />
                     <div />
-                    <el-button :icon="Back" @click="handlePtz('left')" />
+                    <el-button :icon="IconLeft" @click="handlePtz('left')" />
                     <el-button class="ptz-center" @click="handlePtz('auto')">
-                      <el-icon><Refresh /></el-icon>
+                      <icon-refresh />
                     </el-button>
-                    <el-button :icon="Right" @click="handlePtz('right')" />
+                    <el-button :icon="IconRight" @click="handlePtz('right')" />
                     <div />
-                    <el-button :icon="Bottom" @click="handlePtz('down')" />
+                    <el-button :icon="IconDown" @click="handlePtz('down')" />
                     <div />
                   </div>
                 </div>
@@ -206,7 +206,7 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
             <el-tab-pane label="留言" name="messages">
               <div class="messages-wrap">
                 <div class="message-input">
-                  <el-input v-model="newMessage" placeholder="发布留言..." size="small" />
+                  <el-input v-model="newMessage" placeholder="说点什么~" size="small" />
                   <el-button type="primary" class="btn-primary send-btn" @click="handleSend">发送</el-button>
                 </div>
                 <div class="messages-list">
@@ -318,9 +318,13 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
   transition: background var(--transition-base), color var(--transition-base);
 }
 
+.segmented-item:hover {
+  color: var(--color-primary);
+}
+
 .segmented-item.active {
   background: var(--color-bg-white);
-  color: var(--color-primary-soft);
+  color: var(--color-primary);
   font-weight: 500;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
@@ -400,10 +404,25 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
   padding: 0;
   margin: 0;
   min-width: 30px;
+  transition: background var(--transition-base), border-color var(--transition-base), color var(--transition-base);
+}
+
+.ptz-grid .el-button:hover,
+.ptz-grid .el-button:focus {
+  background: var(--color-primary-bg-tint);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
 }
 
 .ptz-center {
   background: var(--color-primary);
+  color: var(--color-text-invert);
+}
+
+.ptz-center:hover,
+.ptz-center:focus {
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
   color: var(--color-text-invert);
 }
 
@@ -433,7 +452,6 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
 .preset-btn:hover {
   background: var(--color-primary-bg-tint);
   border: 1px solid var(--color-primary);
-  border-color: var(--color-primary-hover);
   color: var(--color-primary);
 }
 
@@ -579,13 +597,18 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
 .message-item {
   padding: 10px 14px;
   border-radius: var(--radius-md);
-  background: var(--color-bg-hover);
+  background: transparent;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.message-item:last-child {
+  border-bottom: none;
 }
 
 .message-head {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 8px;
   margin-bottom: 6px;
 }
 
@@ -619,7 +642,7 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
 }
 
 .more-comments:hover {
-  color: var(--color-primary-hover);
+  color: var(--color-primary);
 }
 
 .message-input {
@@ -631,6 +654,15 @@ const handleOpenEvaluate = () => { showEvaluateDialog.value = true }
 .message-input .el-input {
   width: 695px;
   height: 36px;
+}
+
+.message-input :deep(.el-input__wrapper) {
+  border-radius: var(--radius-md);
+  transition: box-shadow 0.2s;
+}
+
+.message-input :deep(.el-input__wrapper:hover) {
+  box-shadow: 0 0 0 1px var(--color-primary) inset;
 }
 
 .send-btn {

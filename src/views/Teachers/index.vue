@@ -142,11 +142,11 @@ const handleRowClick = (record: SupervisionRecord) => {
 }
 
 .view-item:hover {
-  color: var(--color-primary-soft);
+  color: var(--color-primary);
 }
 
 .view-active {
-  color: var(--color-primary-soft);
+  color: var(--color-primary);
   background: var(--color-bg-white);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
 }
@@ -170,11 +170,11 @@ const handleRowClick = (record: SupervisionRecord) => {
 }
 
 .tab-item:hover {
-  color: var(--color-primary-soft);
+  color: var(--color-primary);
 }
 
 .tab-active {
-  color: var(--color-primary-soft);
-  border-bottom-color: var(--color-primary-soft);
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
 }
 </style>

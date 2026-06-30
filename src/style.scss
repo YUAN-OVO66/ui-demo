@@ -139,6 +139,16 @@ body {
   height: 36px;
 }
 
+/* 日期选择器 - 通过 CSS 变量覆盖 Element Plus */
+.filter-date {
+  --el-component-size: 36px;
+  --el-input-height: 36px;
+  --el-border-radius-base: 8px;
+  --el-input-border-radius: 8px;
+  --el-input-hover-border-color: var(--color-primary);
+  --el-border-color-hover: var(--color-primary);
+}
+
 .form-select .el-select__wrapper,
 .form-input .el-select__wrapper,
 .form-input .el-input__wrapper {
@@ -149,6 +159,20 @@ body {
   box-shadow: 0 0 0 1px var(--color-border) inset;
   padding: 0 11px;
   gap: 0;
+  transition: box-shadow 0.2s;
+}
+
+.form-select .el-select__wrapper:hover,
+.form-input .el-select__wrapper:hover,
+.form-input .el-input__wrapper:hover {
+  box-shadow: 0 0 0 1px var(--color-primary) inset;
+}
+
+.filter-date .el-date-editor,
+.filter-date .el-range-editor {
+  background: var(--color-bg-white);
+  box-shadow: 0 0 0 1px var(--color-border) inset;
+  transition: box-shadow 0.2s;
 }
 
 .form-select .el-select__wrapper.is-focused,
@@ -157,7 +181,29 @@ body {
   box-shadow: 0 0 0 1px var(--color-primary) inset;
 }
 
+.filter-date .el-date-editor:hover,
+.filter-date .el-range-editor:hover,
+.filter-date .el-date-editor.is-active,
+.filter-date .el-range-editor.is-active {
+  box-shadow: 0 0 0 1px var(--color-primary) inset;
+}
+
+.filter-date .el-range-input {
+  background: transparent;
+}
+
 /* ========== 下拉框全局样式 ========== */
+.el-select-dropdown {
+  font-family: var(--font-family);
+  font-size: 14px;
+}
+
+.el-select-dropdown__item {
+  font-family: var(--font-family);
+  font-size: 14px;
+  color: var(--color-text);
+}
+
 .el-select-dropdown__item.is-selected {
   color: var(--color-primary);
   font-weight: 600;
@@ -173,6 +219,50 @@ body {
 
 .el-select__wrapper.is-focused {
   box-shadow: 0 0 0 1px var(--color-primary) inset;
+}
+
+/* ========== 日期选择器全局样式 ========== */
+.el-date-picker,
+.el-date-range-picker {
+  font-family: var(--font-family);
+  font-size: 14px;
+}
+
+.el-date-picker__header-label,
+.el-date-table th,
+.el-date-table td {
+  font-family: var(--font-family);
+}
+
+/* 选中的日期单元格 */
+.el-date-table td.selected .el-date-table-cell__text {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+/* 范围选择 - 起始和结束日期 */
+.el-date-table td.start-date .el-date-table-cell__text,
+.el-date-table td.end-date .el-date-table-cell__text {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+/* 范围内的日期 */
+.el-date-table td.in-range .el-date-table-cell__text {
+  background-color: var(--color-primary-bg);
+  color: var(--color-primary);
+}
+
+/* 今天的日期 */
+.el-date-table td.today .el-date-table-cell__text {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* hover 效果 */
+.el-date-table td.available:hover .el-date-table-cell__text {
+  background-color: var(--color-primary-bg-hover);
+  color: var(--color-primary);
 }
 
 /* ========== 通用面板 ========== */

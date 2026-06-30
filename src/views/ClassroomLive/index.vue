@@ -21,6 +21,15 @@ const currentRecord = computed(() => {
 
 const videoUrl = import.meta.env.VITE_VIDEO_URL
 
+/* 媒体流与多媒体屏幕的显示控制
+ * A-103 教室为单面板示例（仅媒体流），其他教室为双面板
+ */
+const SINGLE_PANEL_CLASSROOM = 'A-103'
+const isSinglePanelClassroom = computed(() => classroomId.value === SINGLE_PANEL_CLASSROOM)
+const hasMediaStream = computed(() => Boolean(videoUrl))
+const hasMultimediaScreen = computed(() => !isSinglePanelClassroom.value)
+const showBothPanels = computed(() => hasMediaStream.value && hasMultimediaScreen.value)
+
 /* 顶部导航 */
 const handleBack = () => router.back()
 const showMoreRooms = ref(false)
@@ -109,8 +118,8 @@ const classroomsByFloor = computed(() => {
     </Transition>
 
     <!-- 2. 中部展示区 -->
-    <section class="main-display">
-      <el-row :gutter="20">
+    <section class="main-display" :class="{ 'main-display-center': !showBothPanels }">
+      <el-row v-if="showBothPanels" :gutter="20">
         <!-- 左列：媒体流 -->
         <el-col :span="12">
           <el-card shadow="never" class="media-card" body-class="media-card-body">
@@ -127,6 +136,27 @@ const classroomsByFloor = computed(() => {
         <!-- 右列：多媒体系统屏幕 -->
         <el-col :span="12">
           <el-card shadow="never" class="screen-card">
+            <img class="media-img" src="@/assets/patrol/classroom-live/example-02.png" alt="多媒体系统屏幕" />
+          </el-card>
+        </el-col>
+      </el-row>
+
+      <!-- 单面板模式 - 使用相同的 el-row/el-col 结构保持尺寸一致 -->
+      <el-row v-else :gutter="20" justify="center">
+        <el-col :span="12">
+          <!-- 仅媒体流 -->
+          <el-card v-if="hasMediaStream" shadow="never" class="media-card" body-class="media-card-body">
+            <div class="video-container">
+              <HlsPlayer
+                :src="videoUrl"
+                :autoplay="true"
+                :muted="true"
+              />
+            </div>
+          </el-card>
+
+          <!-- 仅多媒体系统屏幕 -->
+          <el-card v-else-if="hasMultimediaScreen" shadow="never" class="screen-card">
             <img class="media-img" src="@/assets/patrol/classroom-live/example-02.png" alt="多媒体系统屏幕" />
           </el-card>
         </el-col>
@@ -168,6 +198,11 @@ const classroomsByFloor = computed(() => {
   flex: 1;
   min-height: 0;
   width: 100%;
+}
+
+.main-display-center :deep(.el-row) {
+  height: 100%;
+  align-items: center;
 }
 
 /* ========== 顶部导航栏 ========== */
