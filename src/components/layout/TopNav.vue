@@ -3,13 +3,10 @@ import { ref } from 'vue'
 import DefaultAvatar from '@/assets/layout/avatar-01.png'
 import IconFeedback from '@/assets/layout/icon-01.svg'
 import IconBell from '@/assets/layout/icon-02.svg'
-import IconSwitch from '@/assets/layout/icon-03.svg'
 import IconLogout from '@/assets/layout/icon-04.svg'
 import FeedbackDialog from '@/components/dialog/FeedbackDialog.vue'
 import MessagePopover from '@/components/layout/MessagePopover.vue'
 
-const showRoleDropdown = ref(false)
-const currentRole = ref('管理员')
 const hasUnread = ref(true)
 const showFeedback = ref(false)
 const showMessagePopover = ref(false)
